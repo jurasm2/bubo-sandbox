@@ -21,9 +21,6 @@ class PageForm extends BaseForm {
     public function __construct($parent, $name) {
         parent::__construct($parent, $name);
 
-//        dump('tu');
-//        die();
-
         $treeNodeId = $this->presenter->getParam('id');
         $labelId = $this->presenter->getParam('labelId');
         $entity = $this->presenter->getParam('entity');
@@ -46,9 +43,6 @@ class PageForm extends BaseForm {
                 $this->createUrl = FALSE;
             }
         }
-
-//        dump($entityConfig);
-//        die();
 
         $labelProperties = array();
         $label = NULL;
@@ -170,6 +164,9 @@ class PageForm extends BaseForm {
                 // !! create language section
                 $langForms[$langCode] = $this->addContainer($langCode);
 
+//                dump($mandatoryProperties);
+//                die();
+
                 // mandatory parameters (will be in all pageForms??)
                 foreach ($mandatoryProperties as $key => $array) {
 
@@ -181,8 +178,11 @@ class PageForm extends BaseForm {
                                 break;
                     }
 
-                    if ($formItem !== NULL && isset($array['class'])) {
-                        $formItem->getControlPrototype()->class[] = $array['class'];
+                    if ($formItem !== NULL) {
+                        if (isset($array['class'])) {
+                            $formItem->getControlPrototype()->class[] = $array['class'];
+                        }
+                        $formItem->getLabelPrototype()->title = '_'.$key;
                     }
 
                     // manage classes for name and its listeners
@@ -285,6 +285,9 @@ class PageForm extends BaseForm {
                             }
 
                     }
+
+                    if ($formItem !== NULL)
+                        $formItem->getLabelPrototype()->title = '_'.$propertyName;
                 }
 
             }

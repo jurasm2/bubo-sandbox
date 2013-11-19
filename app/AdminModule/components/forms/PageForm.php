@@ -215,9 +215,6 @@ class PageForm extends BaseForm {
 
 
                         switch ($property['engine']) {
-                            case 'parametrizer':
-                                $formItem = $langForms[$langCode]->addSubmit($propertyName, $property['label']);
-                                break;
                             case 'media':
                                 switch ($property['type']) {
                                     case 'mediaFile':
@@ -227,9 +224,25 @@ class PageForm extends BaseForm {
                                         $formItem = $langForms[$langCode]->addMediaFile($propertyName, $property['label']);
                                         break;
                                 }
-//                            default:
-//                                $formItem = $langForms[$langCode]->addHidden($propertyName, $property['label']);
-//                                break;
+                                break;
+                            case 'label':
+                                $currentLanguage = $this->presenter['structureManager']->getLanguage();
+                                $st = new \BuboApp\AdminModule\Components\SelectTraverser($this->presenter);
+                                $label = $this->presenter->pageManagerService->getLabelByName($property['bind']['labelName']);
+                                $selectData = array();
+                                if ($label !== NULL) {
+                                    $labelRoots = $this->presenter->pageManagerService->getLabelRoots($label['label_id'], $currentLanguage);
+                                    $myRoot = reset($labelRoots);
+
+                                    $st->setTopLevelPage($myRoot);
+                                    $st->hideRootElement();
+                                    $selectData = $st->getSelectMenu($currentLanguage);
+                                }
+                                $formItem = $langForms[$langCode]->addSelect($propertyName, $property['label'], $selectData);
+                                if (isset($property['prompt'])) {
+                                    $formItem->setPrompt($property['prompt']);
+                                }
+                                $formItem->getControlPrototype()->style = 'font-family:monospace;font-size:12px;';
                         }
 
 
@@ -237,12 +250,20 @@ class PageForm extends BaseForm {
                     } else {
 
                             switch ($property['type']) {
-                                case 'text': $formItem = $langForms[$langCode]->addText($propertyName, $property['label']);
+                                case 'text':
+                                        $formItem = $langForms[$langCode]->addText($propertyName, $property['label']);
                                         if (isset($property['class'])) {
                                             $formItem->getControlPrototype()->class = $property['class'];
                                         }
                                         break;
-                                case 'textArea': $formItem = $langForms[$langCode]->addTextArea($propertyName, $property['label']);
+                                case 'textArea':
+                                        $formItem = $langForms[$langCode]->addTextArea($propertyName, $property['label']);
+                                        if (isset($property['class'])) {
+                                            $formItem->getControlPrototype()->class = $property['class'];
+                                        }
+                                        break;
+                                case 'checkbox':
+                                        $formItem = $langForms[$langCode]->addCheckbox($propertyName, $property['label']);
                                         if (isset($property['class'])) {
                                             $formItem->getControlPrototype()->class = $property['class'];
                                         }
@@ -257,7 +278,8 @@ class PageForm extends BaseForm {
                                             $formItem->setRequired($property['required']);
                                         }
                                         break;
-                                case 'color': $formItem = $langForms[$langCode]->addText($propertyName, $property['label']);
+                                case 'color':
+                                        $formItem = $langForms[$langCode]->addText($propertyName, $property['label']);
                                         $formItem->getControlPrototype()->type = 'color';
                                         break;
                             }
@@ -709,15 +731,6 @@ class PageForm extends BaseForm {
         $treeNodeId = (int) $this->presenter->getParam('id');
         $labelId = $this->presenter->getParam('labelId');
 
-        $submitter = $form->isSubmitted();
-
-        if (\Nette\Utils\Strings::startsWith($submitter->name, 'ext_')) {
-            $this->presenter->extManagerService->redirect($submitter->name);
-        }
-
-//        dump($submitter->name);
-//        die();
-
         $values = $form->getValues();
 
         if (!isset($values['layout'])) {
@@ -730,10 +743,6 @@ class PageForm extends BaseForm {
             }
         }
 
-//
-//        dump($values);
-//        die();
-
         $entity = $values['entity'];
         $parent = $values['parent'];
         $layout = $values['layout'];
@@ -745,8 +754,6 @@ class PageForm extends BaseForm {
                         'module'    =>  $this->presenter->pageManagerService->getCurrentModule()
         );
         $this->presenter->pageModel->maybeChangeParent($treeNodeId, $parentData);
-//        dump('tu');
-//        die();
         $whatToPublish = $values['what_to_publish'];
 
 

@@ -2,8 +2,8 @@
 
 namespace BuboApp\AdminModule\Forms;
 
-use Nette\Application\UI\Form,
-    Nette\Environment;
+use Nette;
+use Nette\Application\UI\Form;
 
 class LabelForm extends BaseForm {
 
@@ -196,10 +196,14 @@ class LabelForm extends BaseForm {
             }
         } else if ($form['manage_extensions']->isSubmittedBy()) {
             $this->presenter->labelId = $labelId;
-//            dump($labelId);
-//            die();
             $this->presenter->redirect('Label:manageLabelExtensions', array('labelId' => $labelId));
         } else if ($form['delete']->isSubmittedBy()) {
+
+            $label = $this->presenter->labelModel->getLabel($labelId);
+            $labelNiceName = $label['nicename'];
+            $this->presenter->cacheStorageService->clean(array(
+                Nette\Caching\Cache::TAGS => array('labels/'.$labelNiceName))
+            );
 
             $this->presenter->labelModel->deleteLabel($labelId);
             $this->getPresenter()->flashMessage('Štítek byl smazán');
@@ -213,15 +217,10 @@ class LabelForm extends BaseForm {
          } else if ($form['createPage']->isSubmittedBy()) {
              // create page or scrap?
              // need to load entity config and determine based on createUrl flag
-
              $label = $this->presenter->pageManagerService->getLabel($labelId);
              $entity = $label['entity'];
 
              $entityConfig = $this->presenter->configLoaderService->loadEntityConfig($entity);
-
-//             dump($label, $entity, $entityConfig);
-//             die();
-
              $createUrl = isset($entityConfig['entityMeta']['createUrl']) ? $entityConfig['entityMeta']['createUrl'] : TRUE;
 
              if ($createUrl) {

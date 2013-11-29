@@ -5,7 +5,7 @@ namespace FrontModule\SandboxModule\Components\PageMenus;
 use Nette\Utils\Html,
     Bubo;
 
-class BigNewsMenu extends Bubo\Navigation\PageMenu {
+class NewsMenu extends Bubo\Navigation\PageMenu {
     
     public function __construct($parent, $name, $lang) {
         parent::__construct($parent, $name, $lang);
@@ -16,16 +16,16 @@ class BigNewsMenu extends Bubo\Navigation\PageMenu {
         $renderer->onRenderMenuItem = callback($this, 'renderMenuItem');
         
         $newWrappers = array(
-                        'topLevel'      =>  NULL,
-                        'topLevelItem'  =>  NULL,
-                        'innerLevel'      =>  NULL,
-                        'innerLevelItem'      =>  NULL
+                        'topLevel'      =>  'div',
+                        'topLevelItem'  =>  'div',
+                        'innerLevel'      =>  'div',
+                        'innerLevelItem'      =>  'div'
         );
         
         $renderer->setWrappers($newWrappers);
         
-//        $renderer->getTopLevelPrototype()->id = 'nav';
-//        $renderer->getTopLevelItemPrototype()->class = 'brand_logo';
+        $renderer->getTopLevelPrototype()->class = 'news-box-row';
+        $renderer->getTopLevelItemPrototype()->class = 'news-box fleft';
         
         return $renderer;
     }
@@ -35,10 +35,10 @@ class BigNewsMenu extends Bubo\Navigation\PageMenu {
         $traverser = $this->createLabelTraverser();
         return $traverser
                     ->setSortingCallback(callback($this, 'customSort'))
+                    ->limit(3)
                     ->skipFirst();
     }
     
-     
     public function customSort($page1, $page2) {
         
         $date1 = \DateTime::createFromFormat('d.m.Y', $page1->_ext_news_date);
@@ -55,24 +55,22 @@ class BigNewsMenu extends Bubo\Navigation\PageMenu {
         
     }
     
+     
     public function renderMenuItem($page, $acceptedStates, $menuItemContainer, $level, $horizontalLevel, $highlight) {
 
         if ($highlight) {
-            $menuItemContainer->class[] = 'active';
+            $menuItemContainer->class .= 'active';
         }
-        
+
         $template = $this->createNewTemplate(__DIR__ . '/templates/menuItem.latte');
         
         $template->page = $page;
-        $template->level = $level;
-        $template->horizontalLevel = $horizontalLevel;
         
-        //$menuItemContainer->class .= ' brand_'.$horizontalLevel;
-        
-//        dump($page->_ext_perex);
+        if ($horizontalLevel == 3) {
+            $menuItemContainer->class .= ' last';
+        }
         
         $menuItemContainer->add(Html::el()
-                            //->setText($page->_ext_perex)
                             ->setHtml($template->__toString())
                             );
         

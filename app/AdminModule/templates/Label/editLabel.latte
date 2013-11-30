@@ -6,13 +6,13 @@
 
 <script type="text/javascript">
     $(function(){
-        
+
         $('#frmlabelForm-name').after('<div id="colorSelector"><div></div></div>');
-        
+
         var $initColor = $('.color-listener').val();
-        
+
         $('#colorSelector div').css('backgroundColor', '#' + $initColor);
-        
+
         $('#colorSelector').ColorPicker({
             color: '#'+$initColor,
             onShow: function (colpkr) {
@@ -27,13 +27,10 @@
                 $('#colorSelector div').css('backgroundColor', '#' + hex);
                 $('.color-listener').val(hex);
             }
-        });  
+        });
     });
 </script>
 
-
 {control labelForm}
-
-
 
 {/block}

@@ -310,8 +310,6 @@ class PageForm extends BaseForm {
 
 
         // load templates -> get only existing and with nice names (if possible)
-//        dump($entityConfig);
-//        die();
         $loadTemplatesWithUrl = TRUE;
         if (isset($entityConfig['entityMeta']) && isset($entityConfig['entityMeta']['createUrl'])) {
             $loadTemplatesWithUrl = $entityConfig['entityMeta']['createUrl'];

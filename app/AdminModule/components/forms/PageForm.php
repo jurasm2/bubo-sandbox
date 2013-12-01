@@ -251,6 +251,7 @@ class PageForm extends BaseForm {
 
                             switch ($property['type']) {
                                 case 'text':
+                                case 'external_url':
                                         $formItem = $langForms[$langCode]->addText($propertyName, $property['label']);
                                         if (isset($property['class'])) {
                                             $formItem->getControlPrototype()->class = $property['class'];

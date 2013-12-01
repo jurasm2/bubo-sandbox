@@ -5,7 +5,7 @@ properties:
 #        name: <name>
 #        data:
 #            method: <methodName>
-#            args: 
+#            args:
 #        class:
 #        htmlParams:
 #            red: blue
@@ -26,19 +26,22 @@ properties:
         label: 'Víceřádkové textové pole'
         class: notiny
 
-    file:
-        type: textArea
-        label: 'Soubor'
-        class: file
+    externalUrl:
+        type: external_url
+        label: 'Externí url'
 
     color:
         type: color
         label: 'Barva'
 
+    checkbox:
+        type: checkbox
+        label: 'Checkbox'
+
     mediaFile:
         type: mediaFile
         engine: media
-        mode: '120x120-shrink_only'
+        mode: '240x800-shrink_only'
         label: 'Soubor'
 
     mediaGallery:
@@ -47,13 +50,22 @@ properties:
         mode: '800x600-shrink_only|120x120-shrink_only'
         label: 'Galerie'
 
-    flip:
-        type: select
-        label: 'Varianta flipu (select)'
-        data:
-            v1: 'Varianta 1'
-            v2: 'Varianta 2'
-            v3: 'Varianta 3'
-            v4: 'Varianta 4'
-        prompt: ':: Vyberte typ flipu ::'
-        #required: 'Vyberte kraj'
+    courses:
+        type: mediaGallery
+        engine: label
+        prompt: ':: Vyberte kurz ::'
+        bind:
+            labelName: Kurzy
+        label: 'Kurzy'
+
+
+#    flip:
+#        type: select
+#        label: 'Varianta flipu (select)'
+#        data:
+#            v1: 'Varianta 1'
+#            v2: 'Varianta 2'
+#            v3: 'Varianta 3'
+#            v4: 'Varianta 4'
+#        prompt: ':: Vyberte typ flipu ::'
+#        #required: 'Vyberte kraj'

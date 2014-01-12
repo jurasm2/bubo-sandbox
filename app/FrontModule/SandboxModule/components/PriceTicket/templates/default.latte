@@ -1,0 +1,11 @@
+{block content}
+    <div n:class="course-price, $isSmall ? small, fleft">
+        <span class="the-price">
+            {if $page->_ext_course_price_discounted}
+                <span class="current-price">{$page->_ext_course_price_discounted|currency}</span>
+                <span class="old-price"><strike>{$page->_ext_course_price|currency}</strike></span>
+            {else}
+                <span class="current-price">{$page->_ext_course_price|currency}</span>
+            {/if}
+        </span>
+    </div>

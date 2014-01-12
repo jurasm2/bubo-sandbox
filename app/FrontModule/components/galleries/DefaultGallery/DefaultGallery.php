@@ -16,7 +16,7 @@ class DefaultGallery extends Control {
     }
 
     public function setTemplateFile() {
-        $this->templateFile = __DIR__ . '/templates/advanced.latte';
+        $this->templateFile = __DIR__ . '/templates/default.latte';
     }
 
     public function getGalleryId() {

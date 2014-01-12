@@ -27,7 +27,7 @@ common:
         lang: cs
         files:
             front: %appDir%/lang # for module Front and other non-specified modules
-            #admin: %appDir%/lang # for module Admin
+            admin: %appDir%/lang # for module Admin
         # optional with defaults
         layout: horizontal # or: vertical
         height: 450
@@ -41,7 +41,7 @@ common:
             save_path: "%tempDir%/sessions"
             expiration: "+ 5 days"
         container:
-            debugger: true
+            debugger: false
 
     services:
         # custom presenter factory assuming all presenters to have 'BuboApp' as the root namespace
@@ -63,6 +63,7 @@ common:
                 - addResource('Admin:Media')
                 - addResource('Admin:Label')
                 - addResource('Admin:Tiny')
+                - addResource('Admin:References')
                 - allow('editor', 'Admin:Default')
                 - allow('admin')
         modelLoader:

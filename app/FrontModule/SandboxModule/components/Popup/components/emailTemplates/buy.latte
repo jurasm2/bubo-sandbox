@@ -1,0 +1,26 @@
+{* Latte template *}
+
+{block content}
+    Na webu nauctesefotografovat.cz byla odeslána objednávka s následujícími hodnotami:<br /><br />
+    Vybrané kurzy:
+    <ul>
+       <li n:foreach="$values['courses'] as $courseId => $bool" n:if="$bool">
+           {$courseTitles[$courseId]}
+       </li>
+    </ul>
+    Jméno: {$values[name]}<br />
+    Email: {$values[email]}<br />
+    Adresa: {$values[address]}<br />
+    PSČ: {$values[zip]}<br />
+    <br />
+    {if $values[message]}
+        Zpráva: {!$values[message]|nl2br}
+        <br />
+    {/if}
+    {if $values[is_company]}
+        Údaje o firmě:<br />
+        IČ: {$values[ic]}<br />
+        Jméno firmy: {$values[company]}<br />
+        Adresa firmy: {$values[company_address]}<br />
+    {/if}
+

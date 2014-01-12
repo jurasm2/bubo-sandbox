@@ -1,0 +1,13 @@
+{* Latte template *}
+
+{block content}
+    Na webu nauctesefotografovat.cz byl odeslán přihlašovací formulář pro kurz:<br />
+    Čas: {$termData->time}<br />
+    Datum: {$termData->date}<br />
+    Jméno kurzu: {$termData->title}<br />
+    <br />
+    s následujícími hodnotami:<br />
+    Číslo voucheru: {$values[voucher_number]}<br />
+    Jméno: {$values[name]}<br />
+    Email: {$values[email]}<br />
+    Telefon: {$values[phone]}<br />

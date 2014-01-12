@@ -1,4 +1,9 @@
-<a class="news-box-title" href="{plink Default:default lang => $page->getUrlLang(), url => $page->getUrl()}">{$page->_name}</a>
-
-{!$page->_ext_newsPerex}
-<a href="{plink Default:default lang => $page->getUrlLang(), url => $page->getUrl()}" class="button more-link">Přečíst <span>&raquo;</span></a>
+<div class="calendar-item">
+    <span class="cal-date">
+        {$page->_ext_action_date} {$page->_ext_action_time}
+    </span>
+    <span class="cal-title">
+        {$page->_name}
+    </span>
+    <a n:if="$page->_ext_a_course" href="{$page->_ext_a_course->_front_url}"></a>
+</div>

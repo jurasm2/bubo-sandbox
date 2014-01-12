@@ -1,0 +1,21 @@
+<div class="term-box">
+    <div class="time-container">
+        <span class="date">
+            {$page->_ext_course_date}
+        </span>
+        <span class="time">
+            {$page->_ext_course_time}
+        </span>
+    </div>
+    <h3 n:if="$page->_ext_course">
+        <a n:tag-if="$page->_ext_course" href="{$page->_ext_course->_front_url}">{$page->_ext_course->_name}</a>
+    </h3>
+    <div n:class="availability, $page->_ext_course_capacity == $page->_ext_course_taken_fields ? red, $page->_ext_course_capacity != $page->_ext_course_taken_fields ? green">
+        <span>Obsazenost</span>
+        <span class="avail-status">{(int) $page->_ext_course_taken_fields}/{(int) $page->_ext_course_capacity}</span>
+    </div>
+    <div n:if="$page->_ext_course" class="button-container">
+        <a class="button open-popup" href="{link logToTerm termData => $termDetail}">Přihlásit</a>
+        <a class="button open-popup" href="{link buyTerm courseId => $page->_ext_course->_tree_node_id}">Koupit</a>
+    </div>
+</div>

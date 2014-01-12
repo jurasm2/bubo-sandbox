@@ -1,0 +1,19 @@
+{layout $page->getLayout('@page')}
+
+{block #content}
+
+{*cache $page->getCacheID('content'), tags => ['contents/'.$page->_tree_node_id, 'labels/nase-znacky', 'labels/novinky', 'labels/akce']*}
+
+    <div class="content clearfix">
+        <div class="content-right clearfix">
+            <h1>{$page->_title}</h1>
+
+            {*control referencesMenu*}
+            {!$page->_content_f}
+            {control coursesMenu}
+        </div>
+        {include '_inc/sidebar.latte'}
+    </div>
+
+{*/cache*}
+{/block}

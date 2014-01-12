@@ -1,0 +1,14 @@
+{* Latte template *}
+
+{block content}
+    <div class="references-container">
+        {foreach $references as $reference}
+            <div class="reference-box animated flipInX">
+                <blockquote>
+                    {*<h3>Nadpis reference</h3>*}
+                    {$reference['message']}
+                    <cite>{$reference['name']}</cite>
+                </blockquote>
+            </div>
+        {/foreach}
+    </div>

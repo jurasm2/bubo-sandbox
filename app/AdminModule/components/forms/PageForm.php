@@ -226,17 +226,18 @@ class PageForm extends BaseForm {
                                 }
                                 break;
                             case 'label':
-                                $currentLanguage = $this->presenter['structureManager']->getLanguage();
+                                //$currentLanguage = $this->presenter['structureManager']->getLanguage();
                                 $st = new \BuboApp\AdminModule\Components\SelectTraverser($this->presenter);
                                 $label = $this->presenter->pageManagerService->getLabelByName($property['bind']['labelName']);
                                 $selectData = array();
                                 if ($label !== NULL) {
-                                    $labelRoots = $this->presenter->pageManagerService->getLabelRoots($label['label_id'], $currentLanguage);
+                                    $labelRoots = $this->presenter->pageManagerService->getLabelRoots($label['label_id'], $langCode);
                                     $myRoot = reset($labelRoots);
 
                                     $st->setTopLevelPage($myRoot);
                                     $st->hideRootElement();
-                                    $selectData = $st->getSelectMenu($currentLanguage);
+                                    $selectData = $st->getSelectMenu($langCode);
+
                                 }
                                 $formItem = $langForms[$langCode]->addSelect($propertyName, $property['label'], $selectData);
                                 if (isset($property['prompt'])) {

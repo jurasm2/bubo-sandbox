@@ -10,7 +10,6 @@ body {
 
 .fleft {float:left;}
 .fright {float:right;}
-
 .clearfix:after {
   content: ".";
   display: block;
@@ -20,42 +19,41 @@ body {
   height: 0;
 }
 
-
 a, a:visited { color: @link-color; text-decoration: @link-decoration; outline: 0; }
 a:hover { text-decoration: @link-decoration-hover;}
 a:hover, a:focus { color: @link-hover; }
 p a, p a:visited { line-height: inherit; }
 
-h1, h2, h3, h4, h5, h6 { font-weight: 400; color:#111; }
+h1, h2, h3, h4, h5, h6 { font-weight: normal;margin-top:0; }
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-weight: inherit; }
-h1 { font-size: @h1-size; line-height: 33px; margin-bottom: 10px;}
-h2 { font-size: @h2-size; line-height: 25px; margin-bottom: 8px; }
-h3 { font-size: @h3-size; line-height: 24px; margin-bottom: 4px; }
-h4 { font-size: @h4-size; line-height: 21px; margin-bottom: 2px; }
-h5 { font-size: @h5-size; line-height: 16px; }
-h6 { font-size: @h6-size; line-height: 16px; }
+h1 { font-size: @h1-size; line-height: 40px; margin-bottom: 15px;}
+h2 { font-size: @h2-size; line-height: 30px; margin-bottom: 10px; }
+h3 { font-size: @h3-size; line-height: 27px; margin-bottom: 8px; }
+h4 { font-size: @h4-size; line-height: 24px; margin-bottom: 4px; }
+h5 { font-size: @h5-size; line-height: 21px; margin-bottom: 0px;}
+h6 { font-size: @h6-size; line-height: 16px; margin-bottom: 0px;}
 
-p { margin: 0 0 20px 0; }
+p { margin: 0 0 15px 0; }
 p img { margin: 0; }
 
-blockquote, blockquote p { font-size: 17px; line-height: 24px; color: #777; font-style: italic; }
-blockquote { margin: 0 0 20px; padding: 9px 20px 0 19px; border-left: 1px solid #ddd; }
-blockquote cite { display: block; font-size: 12px; color: #555; }
+blockquote, blockquote p { font-size: 15px; line-height: 24px; color: #444; font-style: italic; }
+blockquote h3 {font-style:normal;color: #111;}
+blockquote { margin: 0; padding: 9px 20px 9px 19px; border-left: 5px solid #85CE9A; }
+blockquote cite { display: block; font-size: 15px; color: #222; }
 blockquote cite:before { content: "\2014 \0020"; }
 blockquote cite a, blockquote cite a:visited, blockquote cite a:visited { color: #555; }
 
 hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 10px 0 20px; height: 0; }
 
-ul,ul li {list-style:none;margin:0;}
 .content ul, ol { margin-bottom: 20px; }
-.content ul { list-style: none outside; }
+.content ul { list-style: outside; }
 .content ol { list-style: decimal; }
 .content ol, ul.square, ul.circle, ul.disc { margin-left: 30px; }
 .content ul.square { list-style: square outside; }
 .content ul.circle { list-style: circle outside; }
 .content ul.disc { list-style: disc outside; }
 .content ul ul, .content ul ol,
-.content ol ol, .content ol ul { margin: 4px 0 5px 10px;  }
+.content ol ol, .content ol ul { margin: 4px 0 5px 0;  }
 .content ul ul li, .content ul ol li,
 .content ol ol li, .content ol ul li { margin-bottom: 6px; }
 .content li { line-height: 18px; margin-bottom: 6px; }
@@ -64,34 +62,23 @@ ul,ul li {list-style:none;margin:0;}
 
  img.scale-with-grid { max-width: 100%; height: auto; }
 
-
-
-//novejsi A
 .button,
 button,
 input[type="submit"],
 input[type="reset"],
 input[type="button"] {
-  #gradient.vertical(#555,#000);
-  //background: #323232;
-  box-shadow: inset 0 1px 0 0 #666;
-  border: 1px solid #222;
-  border-bottom: 1px solid #000;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
+  background: #222;
+  border:0;
   color: #fff !important;
   display: inline-block;
-  font-size: 11px;
-  font-weight: bold;
+  font-size: 14px;
   text-decoration: none;
   cursor: pointer;
   margin-bottom: 20px;
-  line-height: 12px;
-  padding: 8px 10px;
-  font-family: @button-font;
-  text-shadow: 0 1px 0 #000;
-
+  line-height: normal;
+  padding: 10px 15px;
+  font-family: 'Lato', sans-serif;
+  outline:0;
 }
 
 .button:hover,
@@ -99,10 +86,8 @@ button:hover,
 input[type="submit"]:hover,
 input[type="reset"]:hover,
 input[type="button"]:hover {
-  #gradient.vertical(#000,#333);
-  color: #fff !important;
-  box-shadow: inset 0px 0px 5px #000;
-  text-shadow: 0 -1px 0 #000;
+  background: #444;
+  color: #fff;
 }
 
 .button:active,
@@ -111,6 +96,14 @@ input[type="submit"]:active,
 input[type="reset"]:active,
 input[type="button"]:active {
   background: #000;
+  color: #fff;
+}
+
+button[disabled],
+.button[disabled] {
+  #gradient .vertical(#ebebeb,#d6d6d6);
+  color:#858585;
+  border: 1px solid #cacaca;
 }
 
 .button.full-width,
@@ -123,20 +116,6 @@ input[type="button"].full-width {
     padding-right: 0 !important;
     text-align: center; }
 
-input[disabled],
-input[disabled]:hover,
-button[disabled],
-.button[disabled] {
-  background: #d6d6d6;
-  color:#858585;
-  border: 1px solid #cacaca;
-}
-
-
-button[disabled], input[disabled] {
-cursor: default;
-}
-
 /* Fix for odd Mozilla border & padding issues */
 button::-moz-focus-inner,
 input::-moz-focus-inner {
@@ -145,8 +124,9 @@ padding: 0;
 }
 
 form {
-    margin-bottom: 20px; }
+    margin-bottom: 0; }
 fieldset {
+    border:none;
     margin-bottom: 20px; }
 input[type="text"],
 input[type="password"],
@@ -154,12 +134,12 @@ input[type="email"],
 textarea,
 select {
     border: 1px solid #ccc;
-    padding: 6px 4px;
+    padding: 10px;
     outline: none;
-    font: 13px @font;
+    font: 14px @font;
     color: #777;
     margin: 0;
-    width: 210px;
+    width: 240px;
     max-width: 100%;
     display: block;
     margin-bottom: 20px;
@@ -180,12 +160,11 @@ textarea {
 label,
 legend {
     display: block;
-    font-weight:600;
-    font-size: 14px;
-    margin-bottom:5px;  }
-
+    font-weight: bold;
+    font-size: 13px;  }
 select {
-    width: 220px; }
+    width: 262px;
+    padding:10px}
 input[type="checkbox"] {
     display: inline; }
 label span,
@@ -193,4 +172,3 @@ legend span {
     font-weight: normal;
     font-size: 13px;
     color: #444; }
-

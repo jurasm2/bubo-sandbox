@@ -16,9 +16,6 @@ class LangSwitch extends Control {
         $template->defaultLang = $this->presenter->langManagerService->getDefaultLanguage();
 
         echo $template;
-
-
-
     }
 
 

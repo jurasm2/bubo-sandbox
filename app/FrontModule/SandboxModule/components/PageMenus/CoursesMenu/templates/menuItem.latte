@@ -1,0 +1,19 @@
+<div class="term-box">
+    <div class="time-container">
+        <span class="date">
+            {$page->_ext_course_date}
+        </span>
+        <span class="time">
+            {$page->_ext_course_time}
+        </span>
+    </div>
+    <h3>{$page->_name}</h3>
+    <div n:class="availability, $page->_ext_course_capacity == $page->_ext_course_taken_fields ? red, $page->_ext_course_capacity != $page->_ext_course_taken_fields ? green">
+        <span>Obsazenost</span>
+        <span class="avail-status">{(int) $page->_ext_course_taken_fields}/{(int) $page->_ext_course_capacity}</span>
+    </div>
+    <div class="button-container">
+        <a class="button open-popup" href="{link logToTerm termId => 33}">Přihlásit</a>
+        <a class="button open-popup" href="{link buyTerm termId => 33}">Koupit</a>
+    </div>
+</div>

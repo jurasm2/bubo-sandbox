@@ -1,4 +1,12 @@
-<a class="news-box-title" href="{plink Default:default lang => $page->getUrlLang(), url => $page->getUrl()}">{$page->_name}</a>
-
-{!$page->_ext_newsPerex}
-<a href="{plink Default:default lang => $page->getUrlLang(), url => $page->getUrl()}" class="button more-link">Přečíst <span>&raquo;</span></a>
+<div n:if="$page->_ext_banner_image->fileExists()" class="banner-container">
+    {dump $page->_ext_banner_course}
+    {if $page->_ext_banner_course}
+        <a href="{!$page->_ext_banner_course->_front_url}">
+            {$page->_ext_banner_image->getAsImage(1)}
+        </a>
+    {else}
+        <a n:tag-if="$page->_ext_banner_url" href="{!$page->_ext_banner_url}" target="_blank">
+            {$page->_ext_banner_image->getAsImage(1)}
+        </a>
+    {/if}
+</div>

@@ -1,5 +1,5 @@
 ##
-# 
+#
 # reserved property names:
 #       - name
 #       - title
@@ -10,9 +10,9 @@
 #
 #
 entityMeta:
-    title: 'Homepage'    
-    createUrl: yes  
-    
+    title: 'Homepage'
+    createUrl: yes
+
 #templates:
 #    restrict:
 #        - homepage.latte
@@ -28,8 +28,8 @@ properties:
         class: wysiwyg
 
     content2:
-        extName: mediaFile # reference to label extension file
-        label: 'Soubor'
+        extName: mediaGallery # reference to label extension file
+        label: 'Galerie do slideru'
 
 groups:
     full:
@@ -37,4 +37,3 @@ groups:
         content: no
         #content2: yes
         #content3: yes
-			

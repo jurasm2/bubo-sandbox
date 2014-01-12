@@ -1,0 +1,26 @@
+{layout $page->getLayout('@page')}
+
+{block #content}
+
+{*cache $page->getCacheID('content'), tags => ['contents/'.$page->_tree_node_id, 'labels/nase-znacky', 'labels/novinky', 'labels/akce']*}
+
+    <div class="content clearfix">
+
+        <div class="content-right">
+            <div class="fright">
+                {control priceTicket:small $page}
+                <a href="{link buyCourse! $page->_tree_node_id}" class="button buy-button open-popup"><span class="icon-cart"></span>{_Koupit}</a>
+            </div>
+            <h1>{$page->_title}</h1>
+            {!$page->_content_f}
+            <div class="fright">
+                {control priceTicket:small $page}
+                <a href="{link buyCourse! $page->_tree_node_id}" class="button buy-button open-popup"><span class="icon-cart"></span>{_Koupit}</a>
+            </div>
+        </div>
+
+        {include '_inc/sidebar.latte'}
+    </div>
+
+{*/cache*}
+{/block}

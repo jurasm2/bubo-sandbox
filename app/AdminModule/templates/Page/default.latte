@@ -91,6 +91,8 @@
 
     {form pageForm}
 
+        {dump $form}
+
         <ul class="errors" n:if="$form->hasErrors()">
                 <li n:foreach="$form->errors as $error">{$error}</li>
         </ul>

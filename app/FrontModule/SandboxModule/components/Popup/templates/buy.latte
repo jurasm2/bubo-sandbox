@@ -1,0 +1,65 @@
+<p>Vyberte si prosím kurz či kurzy, o které máte zájem. Zakoupený voucher má platnost 3 měsíce, abyste měli dostatek času na jeho využití. Chcete-li věnovat kurz jako dárek napište prosím do poznámky jméno či jména obdarovaných a další podrobnosti. Obratem Vás budu kontaktovat, zašlu voucher a platební instrukce.</p>
+{*control buyForm*}
+
+{form buyForm}
+
+    <fieldset>
+        <div class="course-checkbox-container">
+            <label for="">Vyberte kurzy</label>
+            {foreach $form->getComponent('courses')->getComponents() as $courseName => $course}
+                <div class="input-container checkbox">
+                    {$course->control}
+                    {$course->label}
+                </div>
+            {/foreach}
+
+        </div>
+        <div class="input-container required">
+            {label name /}
+            {input name}
+        </div>
+
+        <div class="input-container required">
+            {label email /}
+            {input email}
+        </div>
+
+        <div class="input-container required">
+            {label address /}
+            {input address}
+        </div>
+
+        <div class="input-container">
+            {label zip /}
+            {input zip}
+        </div>
+
+        <div class="input-container full-length">
+            {label message /}
+            {input message}
+        </div>
+
+        <div class="input-container is-company full-length">
+            {input is_company}{label is_company /}
+        </div>
+
+        <div class="input-container company-container _hidable_ic required" style="display:none;">
+            {label ic /}
+            {input ic}
+        </div>
+
+        <div class="input-container company-container _hidable_ic required" style="display:none;">
+            {label company /}
+            {input company}
+        </div>
+
+        <div class="input-container company-container _hidable_ic required" style="display:none;">
+            {label company_address /}
+            {input company_address}
+        </div>
+
+        <div class="input-container full-length">
+            {input send}
+        </div>
+    </fieldset>
+{/form}

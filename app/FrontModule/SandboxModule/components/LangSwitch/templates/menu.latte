@@ -1,5 +1,6 @@
 
 {block content}
+{*
 <ul class="lang-switcher">
 	<li><span>{$langs[$page->_lang]}</span>
 		<ul class="lang-dropdown">
@@ -7,3 +8,10 @@
 		</ul>
 	</li>
 </ul>
+*}
+
+<div class="lang-switch">
+    {foreach $langs as $langCode => $lang}
+        <a n:class="lang-icon, $langCode, $page->_lang == $langCode ? active" href="{plink Default:default lang=>$defaultLang != $langCode ? $langCode : NULL, url=>''}"></a>
+    {/foreach}
+</div>

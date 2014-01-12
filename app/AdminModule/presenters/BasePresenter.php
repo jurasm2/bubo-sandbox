@@ -27,6 +27,7 @@ abstract class BasePresenter extends BuboApp\BasePresenter
     protected $adminSections = array(
         'labelSection',
         'virtualDriveSection',
+        'referencesSection',
     );
 
     /**
@@ -140,59 +141,6 @@ abstract class BasePresenter extends BuboApp\BasePresenter
         // page manager id automatically injected into template
         $this->template->pageManager = $this->pageManagerService;
     }
-
-//    /**
-//     * Factory method for all
-//     * - forms
-//     * - datagrids
-//     * - confirmdialogs
-//     *
-//     * @param type $name
-//     * @return classname
-//     */
-//    public function createComponent($name)
-//    {
-//
-//        if ($name == 'pageMultiForm') {
-//            return new Components\MultiForms\PageMultiForm($this, $name);
-//
-//        } else if (preg_match('([a-zA-Z0-9]+Form)', $name)) {
-//            // detect forms
-//            $classname = "AdminModule\\Forms\\" . ucfirst($name);
-//            if (class_exists($classname)) {
-//                $form = new $classname($this, $name);
-//                $form->setTranslator($this->context->translator);
-//                return $form;
-//            }
-//        } else if (preg_match('([a-zA-Z0-9]+DataGrid)', $name)) {
-//            // detect datagrids
-//            $classname = "AdminModule\\DataGrids\\" . ucfirst($name);
-//            if (class_exists($classname)) {
-//                $datagrid = new $classname($this, $name);
-//                $datagrid->setTranslator($this->context->translator);
-//                return $datagrid;
-//            }
-//        } else if (preg_match('([a-zA-Z0-9]+ConfirmDialog)', $name)) {
-//            // detect confrim dialogs
-//            $classname = "AdminModule\\Dialogs\\" . ucfirst($name);
-//            if (class_exists($classname)) {
-//                $dialog = new $classname($this, $name);
-//                //$dialog->setTranslator($this->context->translator);
-//                return $dialog;
-//            }
-//        }  else if (preg_match('([a-zA-Z0-9]+Sorter)', $name)) {
-//            // detect confrim dialogs
-//            $classname = "AdminModule\\Sorters\\" . ucfirst($name);
-//            if (class_exists($classname)) {
-//                $sorter = new $classname($this, $name);
-//                //$dialog->setTranslator($this->context->translator);
-//                return $sorter;
-//            }
-//        }
-//
-//        return parent::createComponent($name);
-//
-//    }
 
     public function createComponentLanguageManager($name)
     {

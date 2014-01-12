@@ -1,0 +1,80 @@
+{layout $page->getDoctype('@html5')}
+
+{block #title}{$page->_title} | Bubo sandbox{/block}
+
+{block css}
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Open+Sans+Condensed:300,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="{$themePath}/css/base.css" media="all" />
+<link rel="stylesheet" type="text/css" href="{$themePath}/css/styles.css" media="all" />
+{/block}
+
+{block ga}
+{/block}
+
+{block js}
+<script type="text/javascript" src="{$basePath}/front/js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="{$basePath}/front/js/plugins/jquery.cycle.all.js"></script>
+<script type="text/javascript" src="{$basePath}/front/js/plugins/shadowbox.js"></script>
+<script type="text/javascript" src="{$themePath}/js/plugins/masonry.pkgd.min.js"></script>
+<script type="text/javascript" src="{$themePath}/js/scripts.js"></script>
+
+
+<script src="{$basePath}/js/jquery.nette.js" type="text/javascript"></script>
+<script src="{$basePath}/js/netteForms.js" type="text/javascript"></script>
+
+{/block}
+
+
+{block body}
+
+
+    <div class="header">
+        <a href="{$basePath}" class="logo">Naučte se fotografovat</a>
+    </div>
+
+    {foreach $flashes as $flash}
+        <div class="flash-msg {$flash->type}">{$flash->message}</div>
+    {/foreach}
+
+
+
+{control langSwitch $page}
+<div class="wrapper">
+    <div class="nav">
+        {control topMenu}
+    </div>
+
+    {block #content}
+    {/block}
+</div>
+
+<div class="footer">
+    <a href="#"><img src="{$themePath}/images/facebook-button.png" alt=""></a>
+</div>
+<div class="popup-overlay">
+<div class="popup-backdrop"></div>
+    <div class="popup-container animated">
+        <div class="popup-header">
+            <h3>Přihlásit se na kurz</h3>
+            <span class="close-popup">X</span>
+        </div>
+        <div class="popup-content">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, quis autem voluptate nisi quae reiciendis unde. Nesciunt, at, deleniti numquam eius illo sequi esse similique aspernatur unde dolorum sit qui.</p>
+            <div class="input-container">
+                <label for="text">Text input</label>
+                <input id="text" name="text" type="text" value=""></label>
+            </div>
+            <div class="input-container">
+                <label for="email">Email input</label>
+                <input id="email" name="email" type="email" value=""></label>
+            </div>
+            <div class="input-container">
+                <label for="password">Password input</label>
+                <input id="password" name="password" type="password" value=""></label>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{/block}

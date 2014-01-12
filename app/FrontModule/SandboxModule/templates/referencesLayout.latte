@@ -1,0 +1,25 @@
+{layout $page->getLayout('@page')}
+
+{block #content}
+
+{*cache $page->getCacheID('content'), tags => ['contents/'.$page->_tree_node_id, 'labels/nase-znacky', 'labels/novinky', 'labels/akce']*}
+
+        <div class="content">
+            <div class="content-header clearfix">
+                <div class="title">
+                    <h1 class="fleft">{$page->_title}</h1>
+                    <a href="{link addReference!}" class="button open-popup fright">{_"Přidat referenci"}</a>
+                </div>
+            </div>
+            <span class="stripes-border"></span>
+
+            <div class="content-text clearfix">
+            {*control referencesMenu*}
+            {!$page->_content_f}
+            {control referenceList $page->_lang}
+
+            </div>
+        </div>
+
+{*/cache*}
+{/block}

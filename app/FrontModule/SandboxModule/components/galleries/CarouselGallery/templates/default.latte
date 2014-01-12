@@ -1,24 +1,16 @@
-
 {if $images}
-
-<div class="carousel-container clearfix">
-                <div class="carousel">
-                    <ul>
-                        {foreach $images as $image}
-                            {var $imageSizes = getimagesize($image->getDirPath(2))}
-                            <li>
-                                <a rel="shadowbox[gal]" href="{$image->getPath(1)}">
-                                    <img {$imageSizes[3]} src="{$image->getPath(2)}" alt="">
-                                </a>
-                            </li>
-                        {/foreach}
-                        
-                    </ul>
-                </div>
-                <div class="controls">
-                    <a href="#" class="prev-page"></a>
-                    <a href="#" class="next-page"></a>
-                </div>
+<div class="slider">
+    <div id="slideshow">
+        {foreach $images as $image}
+        <div class="slide">
+            <img src="{$image->getPath(0)}" alt="">
+            <div class="slide-info" n:if="$image->getDescription('title') && $image->getDescription('description')">
+                <h2 n:if="$image->getDescription('title')">{$image->getDescription('title')}</h2>
+                <p n:if="$image->getDescription('description')">{$image->getDescription('description')}</p>
             </div>
-
+            {*<a href="#"></a>*}
+        </div>
+        {/foreach}
+    </div>
+</div>
 {/if}

@@ -4,8 +4,8 @@ modules:
         title: 'Bubo sandbox'
         langs:
             cs: Čeština
+            de: Deutch
             en: English
-            #it: Italiano
         defaultLang: cs
         hosts:
-            - 'localhost/bubotest/www/'
+            - 'localhost/bubak3/www/'

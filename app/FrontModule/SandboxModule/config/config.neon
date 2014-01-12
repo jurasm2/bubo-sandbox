@@ -16,8 +16,8 @@ development:
             driver: mysql
             host: localhost
             username: root
-            password: 
-            database: bubo
+            password:
+            database: pension
             charset: utf8
             profiler: true
 

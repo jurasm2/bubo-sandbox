@@ -10,7 +10,6 @@ body {
 
 .fleft {float:left;}
 .fright {float:right;}
-
 .clearfix:after {
   content: ".";
   display: block;
@@ -20,20 +19,19 @@ body {
   height: 0;
 }
 
-
 a, a:visited { color: @link-color; text-decoration: @link-decoration; outline: 0; }
 a:hover { text-decoration: @link-decoration-hover;}
 a:hover, a:focus { color: @link-hover; }
 p a, p a:visited { line-height: inherit; }
 
-h1, h2, h3, h4, h5, h6 { font-weight: 400; color:#111; }
+h1, h2, h3, h4, h5, h6 { font-weight: bold; }
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-weight: inherit; }
-h1 { font-size: @h1-size; line-height: 33px; margin-bottom: 10px;}
-h2 { font-size: @h2-size; line-height: 25px; margin-bottom: 8px; }
-h3 { font-size: @h3-size; line-height: 24px; margin-bottom: 4px; }
-h4 { font-size: @h4-size; line-height: 21px; margin-bottom: 2px; }
-h5 { font-size: @h5-size; line-height: 16px; }
-h6 { font-size: @h6-size; line-height: 16px; }
+h1 { font-size: @h1-size; line-height: 20px; margin-bottom: 15px;}
+h2 { font-size: @h2-size; line-height: 18px; margin-bottom: 8px; }
+h3 { font-size: @h3-size; line-height: 16px; margin-bottom: 4px; }
+h4 { font-size: @h4-size; line-height: 14px; margin-bottom: 2px; }
+h5 { font-size: @h5-size; line-height: 12px; }
+h6 { font-size: @h6-size; line-height: 12px; }
 
 p { margin: 0 0 20px 0; }
 p img { margin: 0; }
@@ -46,7 +44,6 @@ blockquote cite a, blockquote cite a:visited, blockquote cite a:visited { color:
 
 hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 10px 0 20px; height: 0; }
 
-ul,ul li {list-style:none;margin:0;}
 .content ul, ol { margin-bottom: 20px; }
 .content ul { list-style: none outside; }
 .content ol { list-style: decimal; }
@@ -64,53 +61,54 @@ ul,ul li {list-style:none;margin:0;}
 
  img.scale-with-grid { max-width: 100%; height: auto; }
 
-
-
-//novejsi A
 .button,
 button,
 input[type="submit"],
 input[type="reset"],
 input[type="button"] {
-  #gradient.vertical(#555,#000);
-  //background: #323232;
-  box-shadow: inset 0 1px 0 0 #666;
-  border: 1px solid #222;
-  border-bottom: 1px solid #000;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
-  color: #fff !important;
+  #gradient .vertical(#ebebeb,#bbbbbb);
+  border: 1px solid #aaa;
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  color: #444;
   display: inline-block;
   font-size: 11px;
   font-weight: bold;
   text-decoration: none;
+  text-shadow: 0 1px rgba(255, 255, 255, .75);
   cursor: pointer;
   margin-bottom: 20px;
-  line-height: 12px;
+  line-height: normal;
   padding: 8px 10px;
-  font-family: @button-font;
-  text-shadow: 0 1px 0 #000;
-
-}
+  font-family: @button-font; }
 
 .button:hover,
 button:hover,
 input[type="submit"]:hover,
 input[type="reset"]:hover,
 input[type="button"]:hover {
-  #gradient.vertical(#000,#333);
-  color: #fff !important;
-  box-shadow: inset 0px 0px 5px #000;
-  text-shadow: 0 -1px 0 #000;
-}
+  #gradient .vertical(#ebebeb,#a0a0a0);
+  border: 1px solid #888;
+  border-top: 1px solid #aaa;
+  border-left: 1px solid #aaa; }
 
 .button:active,
 button:active,
 input[type="submit"]:active,
 input[type="reset"]:active,
 input[type="button"]:active {
-  background: #000;
+  #gradient .vertical(#ebebeb,#747474);
+  border: 1px solid #666;
+}
+
+button[disabled],
+.button[disabled] {
+  #gradient .vertical(#ebebeb,#d6d6d6);
+  color:#858585;
+  border: 1px solid #cacaca;
 }
 
 .button.full-width,
@@ -122,20 +120,6 @@ input[type="button"].full-width {
     padding-left: 0 !important;
     padding-right: 0 !important;
     text-align: center; }
-
-input[disabled],
-input[disabled]:hover,
-button[disabled],
-.button[disabled] {
-  background: #d6d6d6;
-  color:#858585;
-  border: 1px solid #cacaca;
-}
-
-
-button[disabled], input[disabled] {
-cursor: default;
-}
 
 /* Fix for odd Mozilla border & padding issues */
 button::-moz-focus-inner,
@@ -156,6 +140,9 @@ select {
     border: 1px solid #ccc;
     padding: 6px 4px;
     outline: none;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
     font: 13px @font;
     color: #777;
     margin: 0;
@@ -180,10 +167,8 @@ textarea {
 label,
 legend {
     display: block;
-    font-weight:600;
-    font-size: 14px;
-    margin-bottom:5px;  }
-
+    font-weight: bold;
+    font-size: 13px;  }
 select {
     width: 220px; }
 input[type="checkbox"] {
@@ -193,4 +178,3 @@ legend span {
     font-weight: normal;
     font-size: 13px;
     color: #444; }
-

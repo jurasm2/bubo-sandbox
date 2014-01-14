@@ -1,4 +1,4 @@
-#gradient {
+#gradient { /*-- GRADIENT MIXIN BUNDLE --*/
 
 	.horizontal(@startColor: #555, @endColor: #333) {
 		background-color: @endColor;
@@ -33,7 +33,7 @@
 	}
 }
 
-#border {
+#border { /*-- BORDER MIXIN BUNDLE --*/
 
 	.radius(@radius:5px) {
 		-webkit-border-radius: @radius;
@@ -57,16 +57,17 @@
 	}
 }
 
+#transition { /*-- TRANSITION MIXIN --*/
 
-.transition(@transition:all 0.2s ease-in-out) {
-	-webkit-transition:@transition;
-	-moz-transition:@transition;
-	transition:@transition;
+	.transition(@transition:all 1s ease-in-out) {
+		-webkit-transition:@transition;
+		-moz-transition:@transition;
+		transition:@transition;
+	}
 }
 
-
 .url(@image,@posX,@posY,@repeat) {
-	background:url('../images/@{image}') @posX @posY @repeat;
+	background:url('../images/@image') @posX @posY @repeat;
 }
 
 .box-shadow(@x: 0, @y: 0, @blur: 5px, @spread:0, @color: rgba(116,116,116,0.5)) {
@@ -81,7 +82,7 @@
   box-shadow: inset @arguments;
 }
 
-.text-shadow(@x: 0, @y: 1px, @blur: 0, @color: rgba(0,0,0,0.9)) {
+.text-shadow(@x: 0, @y: 1px, @blur: 0, @color: rgba(255,255,255,0.2)) {
 	text-shadow: @arguments;
 }
 
@@ -93,3 +94,8 @@
 	width:@w; height:@h;
 }
 
+.box-sizing(@type: border-box) {
+	-webkit-box-sizing: @type;
+	-moz-box-sizing:    @type;
+	box-sizing:         @type;
+}

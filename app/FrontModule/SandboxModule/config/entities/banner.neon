@@ -1,5 +1,5 @@
 ##
-# 
+#
 # reserved property names:
 #       - name
 #       - title
@@ -10,17 +10,17 @@
 #
 #
 entityMeta:
-    title: 'Stránka flipchartu'
+    title: 'Banner'
     createUrl: no
 
 properties:
     content:
-#        db: # if ommited then cms_page.<propertyName> used
-#            table: '[:core:samsung]'	# if ommited table [cms_page] used, use dibi style notations
-#            attribute: '[content]'
-        type: textArea
-        label: 'Popis'
-        class: wysiwyg
+        extName: mediaFileBannerImage # reference to label extension file
+        label: 'Obrázek banneru'
+
+    content2:
+        type: text
+        label: 'Url'
 
 groups:
     full:
@@ -28,4 +28,3 @@ groups:
         content: no
         #content2: yes
         #content3: yes
-			

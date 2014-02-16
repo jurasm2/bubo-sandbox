@@ -1,0 +1,55 @@
+{layout $page->getDoctype('@html5')}
+
+{block #title}{$page->_title} | Bubo sandbox{/block}
+
+{block css}
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Open+Sans+Condensed:300,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="{$themePath}/css/base.css" media="all" />
+<link rel="stylesheet" type="text/css" href="{$themePath}/css/styles.css" media="all" />
+{/block}
+
+{block ga}
+{/block}
+
+{block js}
+<script type="text/javascript" src="{$basePath}/front/js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="{$basePath}/front/js/plugins/jquery.cycle.all.js"></script>
+<script type="text/javascript" src="{$basePath}/front/js/plugins/shadowbox.js"></script>
+<script type="text/javascript" src="{$themePath}/js/scripts.js"></script>
+
+
+<script src="{$basePath}/js/jquery.nette.js" type="text/javascript"></script>
+<script src="{$basePath}/js/netteForms.js" type="text/javascript"></script>
+
+{/block}
+
+
+{block body}
+<div class="wrapper{block #wrapperName}{/block}">
+
+        {control langSwitch $page}
+	<div class="header">
+		<a href="{plink Default:default url=>''}" class="logo"></a>
+		<div class="img-container size-745x100">
+                    {control bannerMenu}
+		</div>
+	</div>
+	<div class="nav">
+            {control topMenu}
+	</div>
+        {block #upperContent}
+        {/block}
+
+	<div class="content full-width">
+		<h1>{$page->_page_title}</h1>
+                {block #content}
+                {/block}
+	</div>
+
+        {block #gallery}
+        {/block}
+
+        {block #map}
+        {/block}
+</div>
+{/block}

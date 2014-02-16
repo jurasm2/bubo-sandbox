@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Language" content="{$page->_lang}" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="keywords" content="{$page->_meta_keys}" />
+    <meta name="description" content="{$page->_meta_description}" />
+    <meta name="author" content="Bubo" />
+    <link rel="shortcut icon" href="{$basePath}/favicon.ico" />
+
+{block css}
+{/block}
+
+{block js}
+{/block}
+
+    <title>{block #title}{/block}</title>
+
+    {block ga}
+    {/block}
+    </head>
+
+    <body n:class="$page->isHomepage() ? hp, !$page->isHomepage() ? sp, $page->_lang">
+        {block body}
+        {/block}
+    </body>
+
+</html>

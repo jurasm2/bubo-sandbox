@@ -44,11 +44,41 @@ properties:
         mode: '240x800-shrink_only'
         label: 'Soubor'
 
+    mediaFileHomepageImage:
+        type: mediaFile
+        engine: media
+        mode: '276x206-crop'
+        label: 'Homepage file'
+
+    mediaFileBannerImage:
+        type: mediaFile
+        engine: media
+        mode: '745x100-crop'
+        label: 'Banner file'
+
+    mediaFileMapImage:
+        type: mediaFile
+        engine: media
+        mode: '690x185-crop'
+        label: 'Map file'
+
     mediaGallery:
         type: mediaGallery
         engine: media
-        mode: '800x600-shrink_only|120x120-shrink_only'
+        mode: '800x600-shrink_only|120x120-crop'
         label: 'Galerie'
+
+    mediaGalleryPage:
+        type: mediaGallery
+        engine: media
+        mode: '800x600-shrink_only|310x232-crop|247x185-crop'
+        label: 'Galerie #1'
+
+    mediaGalleryHomepageSlider:
+        type: mediaGallery
+        engine: media
+        mode: '458x343-crop'
+        label: 'Homepage slider'
 
     courses:
         type: mediaGallery
@@ -59,13 +89,4 @@ properties:
         label: 'Kurzy'
 
 
-#    flip:
-#        type: select
-#        label: 'Varianta flipu (select)'
-#        data:
-#            v1: 'Varianta 1'
-#            v2: 'Varianta 2'
-#            v3: 'Varianta 3'
-#            v4: 'Varianta 4'
-#        prompt: ':: Vyberte typ flipu ::'
-#        #required: 'Vyberte kraj'
+

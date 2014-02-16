@@ -1,0 +1,8 @@
+{if $images}
+    <div class="img-container size-458x343 slide-me">
+        {foreach $images as $image}
+            {dump $image}
+            <img src="{$image->getPath(1)}" alt="{$image->getDescription('title')}" title="{$image->getDescription('title')}" />
+        {/foreach}
+    </div>
+{/if}

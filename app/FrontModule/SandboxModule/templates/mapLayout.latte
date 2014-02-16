@@ -1,0 +1,19 @@
+{layout $page->getLayout('@page')}
+
+{block #wrapperName} img-right{/block}
+
+{block #content}
+    {!$page->_content}
+{/block}
+
+{block #gallery}
+    {!$page->_content2('RightSideGallery')}
+{/block}
+
+{block #map}
+    <div class="image-bottom-long">
+        <div class="img-box">
+            <a href="{!$page->_content4}">{!$page->_content3->getAsImage(1)}</a>
+        </div>
+    </div>
+{/block}

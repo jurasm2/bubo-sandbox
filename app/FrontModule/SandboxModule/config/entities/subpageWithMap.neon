@@ -10,13 +10,12 @@
 #
 #
 entityMeta:
-    title: 'Běžná stránka s obrázky'
+    title: 'Stránka s mapou'
     createUrl: yes
 
 templates:
     restrict:
-        - imgBottomLayout.latte
-        - imgRightLayout.latte
+        - mapLayout.latte
 
 properties:
     content:
@@ -26,7 +25,16 @@ properties:
 
     content2:
         extName: mediaGalleryPage
-        label: 'Galerka'
+        label: 'Galerie'
+
+
+    content3:
+        extName: mediaFileMapImage
+        label: 'Obrázek s mapou'
+
+    content4:
+        extName: externalUrl
+        label: 'Url'
 
 groups:
     full:

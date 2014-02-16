@@ -6,3 +6,5 @@ layouts:
     photogalleryDetail.latte: "Detail fotogalerie"
     news.latte: "Novinky"
     newsDetail.latte: "Detail novinky"
+    imgBottomLayout.latte: "Obrázky dole"
+    imgRightLayout.latte: "Obrázky vpravo"

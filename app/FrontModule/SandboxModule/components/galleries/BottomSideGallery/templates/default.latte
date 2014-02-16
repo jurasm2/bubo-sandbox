@@ -1,0 +1,11 @@
+<div class="image-container">
+{if $images}
+    {foreach $images as $image}
+        {if $iterator->counter <= 3}
+        <div class="img-box">
+            <img src="{$image->getPath(2)}" alt="{$image->getDescription('title')}" title="{$image->getDescription('title')}" />
+        </div>
+        {/if}
+    {/foreach}
+{/if}
+</div>

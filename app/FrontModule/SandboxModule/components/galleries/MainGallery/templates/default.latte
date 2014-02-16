@@ -1,0 +1,17 @@
+{if $images}
+<div class="gallery-container">
+    {foreach $images as $image}
+        {if $iterator->counter <= 6}
+        <div n:class="gallery-box, $iterator->counter % 3 == 0 ? last">
+            <a rel="shadowbox[gal]" href="{$image->getPath(1)}"><img src="{$image->getPath(2)}" alt="ahoj" alt="ahoj" /></a>
+        </div>
+        {/if}
+    {/foreach}
+
+    <div class="paginator">
+            <a href="#">1 - 6</a>
+            <a href="#">7 - 12</a>
+            <a href="#">13 - 18</a>
+    </div>
+</div>
+{/if}

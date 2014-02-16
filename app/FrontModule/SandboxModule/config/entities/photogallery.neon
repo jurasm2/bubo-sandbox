@@ -10,23 +10,25 @@
 #
 #
 entityMeta:
-    title: 'Běžná stránka s obrázky'
+    title: 'Fotogalerie'
     createUrl: yes
 
 templates:
     restrict:
-        - imgBottomLayout.latte
-        - imgRightLayout.latte
+        - photogallery.latte
 
 properties:
     content:
+#        db: # if ommited then cms_page.<propertyName> used
+#            table: '[:core:samsung]'	# if ommited table [cms_page] used, use dibi style notations
+#            attribute: '[content]'
         type: textArea
         label: 'Obsah'
         class: wysiwyg
 
     content2:
-        extName: mediaGalleryPage
-        label: 'Galerka'
+        extName: mediaGalleryPage # reference to label extension file
+        label: 'Galerie'
 
 groups:
     full:

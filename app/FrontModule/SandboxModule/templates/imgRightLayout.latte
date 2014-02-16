@@ -1,0 +1,11 @@
+{layout $page->getLayout('@page')}
+
+{block #wrapperName} img-right{/block}
+
+{block #content}
+    {!$page->_content}
+{/block}
+
+{block #gallery}
+    {!$page->_content2('RightSideGallery')}
+{/block}

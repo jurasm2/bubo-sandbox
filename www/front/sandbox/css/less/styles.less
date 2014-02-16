@@ -57,7 +57,7 @@
 			height: 32px;
 			border-top:2px solid #f3ad32;
 			border-bottom:2px solid #f3ad32;
-
+			
 			display: -webkit-box;
 			display: -moz-box;
 			display: -ms-flexbox;
@@ -78,7 +78,7 @@
 				padding:0 15px;
 				position: relative;
 				top:-2px;
-				position: relative;
+				float:left;
 				a {
 					display:block;
 					.square(100%);
@@ -98,6 +98,7 @@
 					width: 100%;
 					border-top:2px solid #fff;
 					z-index: 500;
+					min-width: 140px;
 					li {
 						a {
 							color: #000;
@@ -125,14 +126,14 @@
 	.content {
 		font-size:1.2em;
 		&.full-width {
-			padding:0 18px;
+			padding:0 20px;
 			h1 {
 				text-transform: uppercase;
 			}
 		}
 		.sidebar {
 			float: left;
-			width: 220px;
+			width: 212px;
 			margin-right:10px;
 			h3 {
 				background: url(../images/orange_gradient.png) repeat-x;
@@ -151,6 +152,12 @@
 			}
 			.sidebar-content {
 				padding-left: 20px;
+				&.first {
+					height: 165px;
+				}
+				&.second {
+					height: 90px;
+				}
 				p {
 					margin-bottom:8px;
 				}
@@ -217,7 +224,7 @@
 			.img-box {
 				float:left;
 				.size(310px,232px);
-				margin-right:10px;
+				margin-right:8px;
 			}
 		}
 	}
@@ -229,8 +236,8 @@
 			border:1px solid #222;
 			overflow: hidden;
 			.box-sizing();
-			margin-bottom:10px;
-			margin-right: 10px;
+			margin-bottom:8px;
+			margin-right: 8px;
 			&.last {
 				margin-right:0;
 			}
@@ -240,8 +247,11 @@
 			a {
 				font-weight: bold;
 				text-decoration: none;
-				padding:0 5px;
+				margin:0 5px;
 				font-size:1.1em;
+				&.current {
+					border-bottom:2px solid #a25742;
+				}
 			}
 		}
 	}

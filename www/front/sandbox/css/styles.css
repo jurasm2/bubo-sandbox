@@ -1,20 +1,17 @@
 #gradient {
   /*-- GRADIENT MIXIN BUNDLE --*/
-
 }
 #border {
   /*-- BORDER MIXIN BUNDLE --*/
-
 }
 #transition {
   /*-- TRANSITION MIXIN --*/
-
 }
 body {
   background: #fada7c;
   font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
-  line-height: 21px;
+  line-height: 19px;
   color: #a25742;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
@@ -44,7 +41,7 @@ a:hover {
 }
 a:hover,
 a:focus {
-  color: #a25742;
+  color: #bc644b;
 }
 p a,
 p a:visited {
@@ -95,7 +92,7 @@ h6 {
   line-height: 12px;
 }
 p {
-  margin: 0 0 20px 0;
+  margin: 0 0 10px 0;
 }
 p img {
   margin: 0;
@@ -425,8 +422,9 @@ legend span {
   height: 32px;
   line-height: 32px;
   padding: 0 15px;
-  top: -2px;
   position: relative;
+  top: -2px;
+  float: left;
 }
 .wrapper .nav > ul > li a {
   display: block;
@@ -447,6 +445,7 @@ legend span {
   width: 100%;
   border-top: 2px solid #fff;
   z-index: 500;
+  min-width: 140px;
 }
 .wrapper .nav > ul > li .dropdown li a {
   color: #000;
@@ -470,14 +469,14 @@ legend span {
   font-size: 1.2em;
 }
 .wrapper .content.full-width {
-  padding: 0 18px;
+  padding: 0 20px;
 }
 .wrapper .content.full-width h1 {
   text-transform: uppercase;
 }
 .wrapper .content .sidebar {
   float: left;
-  width: 220px;
+  width: 212px;
   margin-right: 10px;
 }
 .wrapper .content .sidebar h3 {
@@ -497,6 +496,12 @@ legend span {
 }
 .wrapper .content .sidebar .sidebar-content {
   padding-left: 20px;
+}
+.wrapper .content .sidebar .sidebar-content.first {
+  height: 165px;
+}
+.wrapper .content .sidebar .sidebar-content.second {
+  height: 90px;
 }
 .wrapper .content .sidebar .sidebar-content p {
   margin-bottom: 8px;
@@ -567,7 +572,7 @@ legend span {
   float: left;
   width: 310px;
   height: 232px;
-  margin-right: 10px;
+  margin-right: 8px;
 }
 .wrapper .gallery-container {
   margin-top: 10px;
@@ -581,8 +586,8 @@ legend span {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  margin-bottom: 10px;
-  margin-right: 10px;
+  margin-bottom: 8px;
+  margin-right: 8px;
 }
 .wrapper .gallery-container .gallery-box.last {
   margin-right: 0;
@@ -593,8 +598,11 @@ legend span {
 .wrapper .gallery-container .paginator a {
   font-weight: bold;
   text-decoration: none;
-  padding: 0 5px;
+  margin: 0 5px;
   font-size: 1.1em;
+}
+.wrapper .gallery-container .paginator a.current {
+  border-bottom: 2px solid #a25742;
 }
 .footer {
   width: 990px;
@@ -696,7 +704,8 @@ div.sb-message {
   line-height: 26px;
 }
 #sb-title-inner {
-  font-size: 16px;
+  font-size: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 #sb-info,
 #sb-info-inner {

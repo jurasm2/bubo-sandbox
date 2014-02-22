@@ -17,7 +17,7 @@ development:
             host: localhost
             username: root
             password:
-            database: pension
+            database: tension
             charset: utf8
             profiler: true
 

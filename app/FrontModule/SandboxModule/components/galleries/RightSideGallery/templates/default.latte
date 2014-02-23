@@ -3,7 +3,7 @@
     {foreach $images as $image}
         {if $iterator->counter <= 3}
         <div class="img-box">
-            <img src="{$image->getPath(3)}" alt="{$image->getDescription('title')}" title="{$image->getDescription('title')}" />
+            <a href="{$image->getPath(0)}"><img src="{$image->getPath(2)}" alt="{$image->getDescription('title')}" title="{$image->getDescription('title')}" /></a>
         </div>
         {/if}
     {/foreach}

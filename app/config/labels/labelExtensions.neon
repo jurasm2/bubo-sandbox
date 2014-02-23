@@ -38,55 +38,63 @@ properties:
         type: checkbox
         label: 'Checkbox'
 
+## MEDIA SECTION
+# common media file
     mediaFile:
         type: mediaFile
         engine: media
         mode: '240x800-shrink_only'
         label: 'Soubor'
 
-    mediaFileHomepageImage:
+# menu image
+    mediaFileMenuImage:
         type: mediaFile
         engine: media
-        mode: '276x206-crop'
-        label: 'Homepage file'
+        mode: '317x123-crop'
+        label: 'Menu image'
 
+# product image
+    mediaFileProductImage:
+        type: mediaFile
+        engine: media
+        mode: '440x292-crop'
+        label: 'Product image'
+
+# banner image
     mediaFileBannerImage:
         type: mediaFile
         engine: media
-        mode: '745x100-crop'
-        label: 'Banner file'
+        mode: '120x120-crop'
+        label: 'Banner image'
 
-    mediaFileMapImage:
+# product overview image
+    mediaFileProductOverviewImage:
         type: mediaFile
         engine: media
-        mode: '690x185-crop'
-        label: 'Map file'
-
+        mode: '316x201-crop'
+        label: 'Product overview image'
+    
+# common gallery
     mediaGallery:
         type: mediaGallery
         engine: media
         mode: '800x600-shrink_only|120x120-crop'
-        label: 'Galerie'
+        label: 'Obecná galerie'
 
+# gallery at page entity
     mediaGalleryPage:
         type: mediaGallery
         engine: media
-        mode: '800x600-shrink_only|310x232-crop|247x185-crop'
-        label: 'Galerie #1'
+        mode: '800x600-shrink_only|267x177-crop'
+        label: 'Galerie na běžné stránce'
 
+# gallery for homepage slider
     mediaGalleryHomepageSlider:
         type: mediaGallery
         engine: media
-        mode: '458x343-crop'
+        mode: '990x365-crop'
         label: 'Homepage slider'
 
-    courses:
-        type: mediaGallery
-        engine: label
-        prompt: ':: Vyberte kurz ::'
-        bind:
-            labelName: Kurzy
-        label: 'Kurzy'
 
 
 

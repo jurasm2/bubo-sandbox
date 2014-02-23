@@ -3,9 +3,9 @@ production:
         database:
             driver: mysql
             host: localhost
-            username: ***
-            password: ***
-            database: ***
+            username: tension
+            password: flsjgoisd45
+            database: mrnet_tension
             charset: utf8
             profiler: true
 

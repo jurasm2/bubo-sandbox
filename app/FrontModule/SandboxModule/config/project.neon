@@ -4,8 +4,9 @@ modules:
         title: 'Bubo sandbox'
         langs:
             cs: Čeština
-            de: Deutch
+#            de: Deutch
             en: English
         defaultLang: cs
         hosts:
+            - 'tension.mrnet.cz/www/'
             - 'localhost/bubak3/www/'

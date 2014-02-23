@@ -29,14 +29,14 @@ class TopMenu extends Bubo\Navigation\PageMenu {
     public function renderMenuItem($page, $acceptedStates, $menuItemContainer, $level, $horizontalLevel, $highlight) {
 
         /* @var $page \Bubo\Pages\CMSPage */
-        $label = $page->presenter->pageManagerService->getLabelByName('Tipy na výlety');
+        $label = $page->presenter->pageManagerService->getLabelByName('Produkty');
         $isLabelled = $label ? $page->isLabelledBy($label['label_id']) : false;
 
         return $menuItemContainer->add(Html::el('a')
                                         ->href($page->_front_url)
                                         ->title($page->_link_title)
                                         ->setText($page->_title)
-                                        ->addClass($isLabelled ? 'non-clickable' : null));
+                                        ->addClass(($isLabelled && $level == 1) ? 'non-clickable' : null));
     }
 
 }

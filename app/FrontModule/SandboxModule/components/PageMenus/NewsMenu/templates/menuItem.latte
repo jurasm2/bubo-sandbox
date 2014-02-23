@@ -1,4 +1,3 @@
-<a class="news-box-title" href="{plink Default:default lang => $page->getUrlLang(), url => $page->getUrl()}">{$page->_name}</a>
+<strong n:if="$level == 1">Novinky z {$page->_ext_news_date|date:'j.n.Y'}:</strong>{!$page->_content}
 
-{!$page->_ext_newsPerex}
-<a href="{plink Default:default lang => $page->getUrlLang(), url => $page->getUrl()}" class="button more-link">Přečíst <span>&raquo;</span></a>
+

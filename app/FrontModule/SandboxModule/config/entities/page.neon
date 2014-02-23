@@ -15,8 +15,9 @@ entityMeta:
 
 templates:
     restrict:
-        - imgBottomLayout.latte
         - imgRightLayout.latte
+        - product.latte
+        - references.latte
 
 properties:
     content:
@@ -26,7 +27,15 @@ properties:
 
     content2:
         extName: mediaGalleryPage
-        label: 'Galerka'
+        label: 'Galerie'
+
+    content3:
+        type: text
+        label: 'Nadpis v menu na HP'
+
+    content4:
+        extName: mediaFileMenuImage
+        label: 'Obrázek v menu na HP'
 
 groups:
     full:
@@ -34,3 +43,5 @@ groups:
         content: no
         #content2: yes
         #content3: yes
+
+

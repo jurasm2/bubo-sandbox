@@ -17,15 +17,15 @@ class NewsMenu extends Bubo\Navigation\PageMenu {
         
         $newWrappers = array(
                         'topLevel'      =>  'div',
-                        'topLevelItem'  =>  'div',
-                        'innerLevel'      =>  'div',
-                        'innerLevelItem'      =>  'div'
+                        'topLevelItem'  =>  'p',
+                        'innerLevel'      =>  null,
+                        'innerLevelItem'      =>  null,
         );
         
         $renderer->setWrappers($newWrappers);
         
-        $renderer->getTopLevelPrototype()->class = 'news-box-row';
-        $renderer->getTopLevelItemPrototype()->class = 'news-box fleft';
+        $renderer->getTopLevelPrototype()->class = 'news-box';
+        //$renderer->getTopLevelItemPrototype()->class = 'news-box fleft';
         
         return $renderer;
     }
@@ -34,8 +34,9 @@ class NewsMenu extends Bubo\Navigation\PageMenu {
     public function getTraverser() {
         $traverser = $this->createLabelTraverser();
         return $traverser
+                    ->setEntity('scrap')
                     ->setSortingCallback(callback($this, 'customSort'))
-                    ->limit(3)
+                    ->limit(1)
                     ->skipFirst();
     }
     
@@ -51,8 +52,6 @@ class NewsMenu extends Bubo\Navigation\PageMenu {
         $sorting =  $timestamp2 - $timestamp1;
         
         return $sorting;
-        
-        
     }
     
      
@@ -62,13 +61,10 @@ class NewsMenu extends Bubo\Navigation\PageMenu {
             $menuItemContainer->class .= 'active';
         }
 
-        $template = $this->createNewTemplate(__DIR__ . '/templates/menuItem.latte');
+        $template = $this->initTemplate(__DIR__ . '/templates/menuItem.latte');
         
         $template->page = $page;
-        
-        if ($horizontalLevel == 3) {
-            $menuItemContainer->class .= ' last';
-        }
+        $template->level = $level;
         
         $menuItemContainer->add(Html::el()
                             ->setHtml($template->__toString())

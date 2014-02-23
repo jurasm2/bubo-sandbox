@@ -1,12 +1,17 @@
 {layout $page->getLayout('@page')}
 
+{block #pageTitle}
+{/block}
+
 {block #upperContent}
 <div class="content clearfix">
     <div class="content-text homepage">
             {!$page->_content2('SliderGallery')}
     </div>
+    <h1>{$page->_page_title}</h1>
     <div class="hp-boxes clearfix">
-        <div class="box-item img-container">
+        {control homepageImageMenu}
+        {*<div class="box-item img-container">
             <a href=""><img src="http://placehold.it/317x123" alt=""></a>
             <span>Produkty</span>
         </div>
@@ -17,14 +22,13 @@
         <div class="box-item img-container last">
             <a href=""><img src="http://placehold.it/317x123" alt=""></a>
             <span>Reference</span>
-        </div>
+        </div>*}
     </div>
-    <div class="news-box">
-        {!$page->_content6}
-    </div>
+    {control newsMenu}
 </div>
 {/block}
 
 {block #content}
     {!$page->_content}
 {/block}
+

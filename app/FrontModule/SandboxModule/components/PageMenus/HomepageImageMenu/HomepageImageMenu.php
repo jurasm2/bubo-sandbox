@@ -5,11 +5,11 @@ namespace FrontModule\SandboxModule\Components\PageMenus;
 use Nette\Utils\Html,
     Bubo;
 
-class BannerMenu extends Bubo\Navigation\PageMenu {
+class HomepageImageMenu extends Bubo\Navigation\PageMenu {
 
     public function __construct($parent, $name, $lang) {
         parent::__construct($parent, $name, $lang);
-        $this->setLabelName('Bannery');
+        $this->setLabelName('Obrázkové menu na HP');
     }
 
     public function setUpRenderer($renderer) {
@@ -17,7 +17,7 @@ class BannerMenu extends Bubo\Navigation\PageMenu {
 
         $newWrappers = array(
                         'topLevel'      =>  null,
-                        'topLevelItem'  =>  null,
+                        'topLevelItem'  =>  'div',
                         'innerLevel'      =>  null,
                         'innerLevelItem'      =>  null
         );
@@ -31,8 +31,8 @@ class BannerMenu extends Bubo\Navigation\PageMenu {
         /* @var $traverser \Bubo\Traversing\RenderingTraversers\LabelTraverser */
         $traverser = $this->createLabelTraverser();
         return $traverser
-                    ->skipFirst()
-                    ->setEntity('banner');
+                    ->setEntity('page')
+                    ->limit(3);
     }
 
     public function renderMenuItem($page, $acceptedStates, $menuItemContainer, $level, $horizontalLevel, $highlight) {
@@ -41,6 +41,8 @@ class BannerMenu extends Bubo\Navigation\PageMenu {
             $menuItemContainer->class .= 'active';
         }
 
+        $menuItemContainer->class .= ' box-item img-container';
+        
         $template = $this->initTemplate(__DIR__ . '/templates/menuItem.latte');
 
         $template->page = $page;

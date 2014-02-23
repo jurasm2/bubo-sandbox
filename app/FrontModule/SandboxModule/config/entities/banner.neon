@@ -18,10 +18,6 @@ properties:
         extName: mediaFileBannerImage # reference to label extension file
         label: 'Obrázek banneru'
 
-    content2:
-        type: text
-        label: 'Url'
-
 groups:
     full:
         #perex: yes

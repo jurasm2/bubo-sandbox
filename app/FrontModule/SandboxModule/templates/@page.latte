@@ -38,7 +38,7 @@
         {/block}
 
 	<div class="content full-width">
-		<h1>{$page->_page_title}</h1>
+		{block #pageTitle}<h1>{$page->_page_title}</h1>{/block}
                 {block #content}
                 {/block}
 	</div>
@@ -56,8 +56,7 @@
             Tel.: +420 284 080 290<br/>
             E-mail: <a href="mailto:info@tension.cz">info@tension.cz</a>
         </p>
-        <img class="fright" src="{$themePath}/images/tuv.jpg" alt="">
-        <img class="fright" src="{$themePath}/images/caok.jpg" alt="">
+        {control bannerMenu}
     </div>
     <div class="footer-copy">
         Copyright &copy; 2014 Tension Systems s.r.o., developed by Dream Extract

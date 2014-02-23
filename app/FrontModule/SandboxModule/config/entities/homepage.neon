@@ -28,24 +28,6 @@ properties:
         extName: mediaGalleryHomepageSlider # reference to label extension file
         label: 'Gallerie do slideru'
 
-    content3:
-        extName: mediaFileHomepageImage # reference to label extension file
-        label: 'Obrázek vpravo nahoře'
-
-    content4:
-        type: text
-        label: 'Nadpis prvního boxu'
-
-    content5:
-        type: textArea
-        label: 'Text prvního boxu'
-        class: wysiwyg
-
-    content6:
-        type: textArea
-        label: 'Text boxu "Novinky a tipy"'
-        class: wysiwyg
-
 groups:
     full:
         #perex: yes

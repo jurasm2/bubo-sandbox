@@ -3,21 +3,20 @@
 @import "norm.less";
 
 .wrapper {
-	width: 986px;
+	width: 990px;
 	min-height: 776px;
 	margin:20px auto 0;
-	background: #fef4d6;
-	border:2px solid #818284;
+	background: #fff;
 	padding-bottom:20px;
-	.box-shadow(4px,4px,0,0,#f3ad32);
 	position: relative;
 	.header {
-		height: 100px;
-		padding:20px;
+		height: 70px;
+		padding:20px 0;
+		position: relative;
 		.logo {
 			float:left;
 			display:block;
-			.size(185px,100px);
+			.size(200px,84px);
 			background: url(../images/logo.jpg) no-repeat;
 		}
 		.img-container.size-745x100 {
@@ -27,7 +26,7 @@
 	}
 	.lang-switch {
 		position: absolute;
-		right:-45px;
+		right:0;
 		top:20px;
 		ul {
 			list-style:none;
@@ -36,8 +35,9 @@
 			li {
 				width:22px;
 				height: 16px;
-				margin-bottom:5px;
+				margin-left:5px;
 				border:1px solid #222;
+				float: left;
 				&.flag.cs {background: url(../images/flag_cs.jpg) no-repeat;}
 				&.flag.de {background: url(../images/flag_de.jpg) no-repeat;}
 				&.flag.en {background: url(../images/flag_en.jpg) no-repeat;}
@@ -49,14 +49,16 @@
 		}
 	}
 	.nav {
-		margin-bottom:20px;
+		float: right;
+		width: 730px;
+		position: absolute;
+		bottom:30px;
+		right:0px;
 		&>ul {
 			padding: 0;
 			margin: 0;
 			list-style: none;
-			height: 32px;
-			border-top:2px solid #f3ad32;
-			border-bottom:2px solid #f3ad32;
+			height: 25px;
 			
 			display: -webkit-box;
 			display: -moz-box;
@@ -69,22 +71,19 @@
 
 			.box-sizing();
 
-			background: url(../images/orange_gradient.png) repeat-x;
+			background: #a7a9ac;
 			&>li {
 				font-weight: bold;
-				text-align: center;
-				height: 32px;
-				line-height: 32px;
-				padding:0 15px;
-				position: relative;
-				top:-2px;
+				height: 25px;
+				line-height: 25px;
+				padding:0 5px;
 				float:left;
+				position: relative;
 				a {
 					display:block;
 					.square(100%);
 					text-decoration: none;
-					text-transform: uppercase;
-					
+					color: #fff;
 				}
 				.dropdown {
 					display:none;
@@ -94,17 +93,19 @@
 					position: absolute;
 					top:100%;
 					left:0;
-					background: #fad97c;
+					background: #a7a9ac;
+					padding-top:5px;
 					width: 100%;
-					border-top:2px solid #fff;
 					z-index: 500;
 					min-width: 140px;
 					li {
 						a {
-							color: #000;
+							color: #fff;
+							padding:0 5px;
 						}
-						&:hover {
-							background: #a25641;
+						&:hover,
+						&.current {
+							background: #f58220;
 							a {
 								color: #fff;
 							}
@@ -112,7 +113,7 @@
 					}
 				}
 				&:hover {
-					background: #a25641;
+					background: #f58220;
 					.dropdown {
 						display:block;
 					}
@@ -125,12 +126,6 @@
 	}
 	.content {
 		font-size:1.2em;
-		&.full-width {
-			padding:0 20px;
-			h1 {
-				text-transform: uppercase;
-			}
-		}
 		.sidebar {
 			float: left;
 			width: 212px;
@@ -144,7 +139,6 @@
 				padding::0;
 				margin:0;
 				padding-left:20px;
-				text-transform: uppercase;
 				font-weight: bold;
 				height: 28px;
 				line-height: 28px;
@@ -164,14 +158,12 @@
 			}
 		}
 		.content-text {
-			float:left;
 			&.homepage {
-				width: 745px;
+				width: 100%;
 			}
-			.img-container.size-458x343 {
-				.size(458px,343px);
-				float: left;
-				margin-right: 10px;
+			.img-container.hp-slider {
+				width: 990px;
+				height: 365px;
 			}
 			.img-container.size-276x206 {
 				.size(276px,206px);
@@ -255,11 +247,50 @@
 			}
 		}
 	}
+	.hp-boxes {
+		margin:20px 0;
+		.box-item {
+			.size(317px,123px);
+			float:left;
+			margin-right: 19px;
+			position: relative;
+			span {
+				display:block;
+				position: absolute;
+				right: 0px;
+				bottom:10px;
+				background: #f58220;
+				color: #fff;
+				font-weight: bold;
+				padding:3px 10px;
+				pointer-events:none;
+			}
+			&.last {
+				margin-right: 0;
+			}
+		}
+	}
 }
 .footer {
+	width: 970px;
+	margin:10px auto;
+	background: #a7a9ac;
+	color: #fff;
+	padding:13px;
+	p {
+		padding:0;
+		margin:0;
+		float:left;
+		margin:0 5px;
+		line-height:1.2;
+		a {
+			color:#fff;
+		}
+	}
+}
+.footer-copy {
 	width: 990px;
 	text-align: center;
-	margin:5px auto;
 }
 .img-container {
 	border:1px solid #222;

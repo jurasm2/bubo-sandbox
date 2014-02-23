@@ -27,16 +27,13 @@
 {block body}
 <div class="wrapper{block #wrapperName}{/block}">
 
+    <div class="header">
         {control langSwitch $page}
-	<div class="header">
 		<a href="{plink Default:default url=>''}" class="logo"></a>
-		<div class="img-container size-745x100">
-                    {control bannerMenu}
-		</div>
-	</div>
-	<div class="nav">
-            {control topMenu}
-	</div>
+    	<div class="nav">
+                {control topMenu}
+    	</div>
+    </div>
         {block #upperContent}
         {/block}
 
@@ -51,5 +48,19 @@
 
         {block #map}
         {/block}
+
+    <div class="footer clearfix">
+        <img class="fleft" src="{$themePath}/images/macalloy.jpg" alt="">
+        <p>
+            Tension Systems s.r.o., Ocelářská 35/1354, Praha 9<br/>
+            Tel.: +420 284 080 290<br/>
+            E-mail: <a href="mailto:info@tension.cz">info@tension.cz</a>
+        </p>
+        <img class="fright" src="{$themePath}/images/tuv.jpg" alt="">
+        <img class="fright" src="{$themePath}/images/caok.jpg" alt="">
+    </div>
+    <div class="footer-copy">
+        Copyright &copy; 2014 Tension Systems s.r.o., developed by Dream Extract
+    </div>
 </div>
 {/block}

@@ -2,46 +2,26 @@
 
 {block #upperContent}
 <div class="content clearfix">
-        <div class="sidebar">
-                <h3>{$page->_content4}</h3>
-                <div class="sidebar-content">
-                    {!$page->_content5}
-                </div>
-            {*control newsAndTipsMenu*}
-                <h3>Novinky a tipy</h3>
-                <div class="sidebar-content">
-                    {!$page->_content6}
-                </div>
+    <div class="content-text homepage">
+            {!$page->_content2('SliderGallery')}
+    </div>
+    <div class="hp-boxes clearfix">
+        <div class="box-item img-container">
+            <a href=""><img src="http://placehold.it/317x123" alt=""></a>
+            <span>Produkty</span>
         </div>
-        <div class="content-text homepage">
-                {!$page->_content2('SliderGallery')}
-                <div class="img-container size-276x206">
-                    <img src="{$page->_content3()->getPath(1)}"
-                         alt="{$page->_content3()->getDescription('title')}"
-                         title="{$page->_content3()->getDescription('title')}"/>
-                </div>
-                <div class="weather-container">
-                        <div style="width:276px; height:113px;">
-                        <object type="application/x-shockwave-flash" data="http://swf.yowindow.com/yowidget3.swf" width="276" height="113">
-                        <param name="movie" value="http://swf.yowindow.com/yowidget3.swf"/>
-                        <param name="allowfullscreen" value="true"/>
-                        <param name="wmode" value="opaque"/>
-                        <param name="bgcolor" value="#FFFFFF"/>
-                        <param name="flashvars"
-                        value="location_id=gn:3071677&amp;location_name=%C3%9A%C5%A1t%C4%9Bk&amp;time_format=24&amp;unit_system=metric&amp;lang=cs&amp;background=#FFFFFF&amp;copyright_bar=false"
-                        />
-                        <a href="http://WeatherScreenSaver.com?client=widget&amp;link=copyright"
-                        style="width:276px;height:113px;display: block;text-indent: -50000px;font-size: 0px;background:#DDF url(http://yowindow.com/img/logo.png) no-repeat scroll 50% 50%;"
-                        >Miniaplikace na váš web</a>
-                        </object>
-                        </div>
-                        <div style="width: 276px; height: 15px; font-size: 14px; font-family: Arial,Helvetica,sans-serif;">
-                        <span style="float:left;"><a target="_top" href="http://WeatherScreenSaver.com?client=widget&amp;link=copyright" style="color: #2fa900; font-weight:bold; text-decoration:none;" title="Miniaplikace na váš web">YoWindow.com</a></span>
-                        <span style="float:right; color:#888888;">Forecast by&nbsp;<a href="http://yr.no" style="color: #2fa900; text-decoration:none;">yr.no</a></span>
-                        </div>
-
-                </div>
+        <div class="box-item img-container">
+            <a href=""><img src="http://placehold.it/317x123" alt=""></a>
+            <span>Dokumenty</span>
         </div>
+        <div class="box-item img-container last">
+            <a href=""><img src="http://placehold.it/317x123" alt=""></a>
+            <span>Reference</span>
+        </div>
+    </div>
+    <div class="news-box">
+        {!$page->_content6}
+    </div>
 </div>
 {/block}
 

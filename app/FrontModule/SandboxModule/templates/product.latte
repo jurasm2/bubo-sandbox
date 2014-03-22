@@ -1,13 +1,14 @@
 {layout $page->getLayout('@page')}
 
-{block #wrapperName} img-right{/block}
+{block #wrapperName} img-right-product{/block}
 
 {block #content}
     {!$page->_content}
     
-    
-    <div class="img-box">
-        {!$page->_ext_product_image->getAsImage(1)}
+    <div class="image-container">
+	    <div class="img-box">
+	        {!$page->_ext_product_image->getAsImage(1)}
+	    </div>
     </div>
     
     

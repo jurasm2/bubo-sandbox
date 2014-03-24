@@ -4,7 +4,7 @@
 
 {block content}
 
-    
+
     <style>
         span.writeThrough {
             font-size: 9px;
@@ -15,9 +15,9 @@
 
     <script>
         $(function() {
-            
+
             function writeThrough($value, $propertyName, $langs, $type, $el) {
-                    
+
                     // writeThrough
                     for (var i=0; i<$langs.length; i++) {
                         if ($type == 'text') {
@@ -30,19 +30,21 @@
                     // highlight
                     var $id = $el.attr('id');
                     $('label[for="'+$id+'"]').attr('style', 'font-weight:bold');
-                    
-                
+
+
+
+
             }
-            
+
             $('span.writeThrough').live('click', function() {
-                
+
                                 var $currentLang = $(this).attr('data-code');
-                                var $propertyName = $(this).attr('data-propertyName');                
-                                var $sourceInputName = $currentLang+'['+$propertyName+']';                                
-                                
+                                var $propertyName = $(this).attr('data-propertyName');
+                                var $sourceInputName = $currentLang+'['+$propertyName+']';
+
                                 // text and submits
                                 var $type = $('input[name="'+$sourceInputName+'"]').attr('type');
-                                
+
                                 // chceck texareas
                                 if ($type == undefined) {
                                     $textarea = $('textarea[name="'+$sourceInputName+'"]');
@@ -50,77 +52,77 @@
                                         $type = 'textarea';
                                     }
                                 }
-                                
-                                
-                                var $value;                                
-                                
+
+
+                                var $value;
+
                                 var $el;
-                                
+
                                 if ($type == 'text') {
                                     $el = $('input[name="'+$sourceInputName+'"]');
                                 } else if ($type == 'textarea') {
                                     $el = $('textarea[name="'+$sourceInputName+'"]');
                                 }
-                                
+
                                 $value = $el.val();
                                 //alert($type, $propertyName);
-                                
-                                
+
+
                                 {var $var = '["'.implode('","',array_keys($activatedLanguages)).'"]'}
                                 var $langs = {!$var};
                                 writeThrough($value, $propertyName, $langs, $type, $el);
-                                
+
 //                                //$selectors = new Array;
 //                                for (var i=0; i<$langs.length; i++) {
 //                                    //$selectors[i]= "input[name="+ $langs[i]+"]";
 //                                    $('input[name="'+$langs[i]+'['+$(this).attr('data-propertyName')+']"]').val($value);
 //                                }
-                                
+
             })
-            
-            
-            
+
+
+
         })
     </script>
-    
-    <div class="tom_cleaner"></div>
-    
 
-    
+    <div class="tom_cleaner"></div>
+
+
+
     {form pageForm}
-    
+
         <ul class="errors" n:if="$form->hasErrors()">
                 <li n:foreach="$form->errors as $error">{$error}</li>
         </ul>
-    
+
         {input what_to_publish}
         {input send}
-        {input cancel}
-    
+        {input move_to_trash, class=>'are-you-sure'}
+        {*input cancel*}
+
         {input parent}
-    
+
     <br />
     <br />
-    
-        {input move_to_trash}
-    
+
+
     <br />
     <br />
-    
+
     {label layout /}
     {input layout}
-    
+
     <br />
-    
+
     <script type="text/javascript">
-        
+
         $(function() {
             $( "#tabs" ).tabs({ selected: {$presetTab} });
         })
-        
+
     </script>
-    
-        
+
+
         {if count($activatedLanguages) > 1}
         <div id="tabs">
             <ul>
@@ -129,21 +131,29 @@
             {/foreach}
             </ul>
         {/if}
-        
+
+            {var $homepageId =  $_presenter->pageManagerService->getHomepageLabelId()}
+            {var $dl = $_presenter->langManagerService->getDefaultLanguage()}
+
             {foreach $activatedLanguages as $code => $language}
-            
+
                 <div id="tabs-{$code}">
                     <div class="ui-widget">
-                        <div class="ui-state-highlight ui-corner-all" style="padding: 0 .7em;"> 
+                        <div class="ui-state-highlight ui-corner-all" style="padding: 0 .7em;">
                             <p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
-                                
+
                             {ifset $defaults[$code]}
                                 {var $timeZones = array_keys($defaults[$code][time_zone])}
                                 {var $currentTimeZone = reset($timeZones)}
-                                {if (isset($defaults[$code][time_zone][0]) && array_key_exists('published', $defaults[$code][time_zone][0]))}<span style="color:red">[LIVE]</span>{/if}
+                                {if (isset($defaults[$code][time_zone][0]) && array_key_exists('published', $defaults[$code][time_zone][0]))}
+                                    <span style="color:red">[LIVE]</span>
+                                {/if}
                                 <strong>{if $currentTimeZone == 1}deferred {/if}{$defaults[$code][status]}</strong> verze {$defaults[$code][version]} (uloženo <i>{*$pageAuthor->login*}</i>{$defaults[$code][created]|timeAgoInWords})
-                                {*<a target="_blank" n:href="Default:showDraft url => $defaults[$code][url]">náhled</a>*}
-                                <a target="_blank" href="{plink $moduleNamespace lang => $code, url => $defaults[$code][url]}">náhled</a>
+                                {? if (isset($defaults[$code][time_zone][0]['published'])): }
+                                {var $_labels = (array) isset($defaults[$code][time_zone][0]['published']) ? array_keys($defaults[$code][time_zone][0]['published']) : array()}
+                                {var $url = array_search($homepageId, $_labels) === FALSE ? $defaults[$code][url] : ''}
+                                <a target="_blank" href="{plink $moduleNamespace lang => $code == $dl ? null : $code, url => $url}">náhled</a>
+                                {? endif; }
                                 {if (isset($defaults[$code][time_zone][1]) && $currentTimeZone != 1)}<span style="float:right;">exituje <a n:href="this tab => $code, waiting => TRUE">stránka</a> s odloženou publikací</span>{/if}
                                 {if (isset($defaults[$code][time_zone][0]) && $currentTimeZone != 0)}<span style="float:right;">jit na <a n:href="this tab => $code, waiting => FALSE">aktuální stránku</a></span>{/if}
                             {else}
@@ -152,23 +162,23 @@
                             </p>
                         </div>
                     </div>
-                    
+
                     <div style="display:none;">{input $code.'-parent_url'}</div>
-                    
-                    
+
+
                     <table>
-                        
-                        
+
+
                         <tr>
                             <td>
-                                {label $code.'-name' /} 
+                                {label $code.'-name' /}
                             </td>
                             <td>
-                                {input $code.'-name'} 
+                                {input $code.'-name'}
                             </td>
                         </tr>
-                        
-                        
+
+
                         {if $form->createUrl}
                         <tr>
                             <td>
@@ -188,7 +198,7 @@
                                 {input $code.'-start_public'}
                             </td>
                         </tr>
-                        
+
                         <tr>
                             <td>
                                 {label $code.'-stop_public' /}
@@ -199,9 +209,9 @@
                         </tr>
                         *}
                         {dump $form->properties}
-                        
+
                         {foreach $form->properties as $propertyName => $property}
-                           
+
                                 <tr>
                                     <td>
                                         {label $code.'-'.$propertyName /}
@@ -215,21 +225,21 @@
                                             {var $__page = reset($defaults[$code]['time_zone'][$currentTimeZone])}
                                             {var $_page = reset($__page)}
                                             {ifset $drive['files'][$_page['page_id']][$propertyName]}
-                                                <a rel="external" href="{$basePath}{$drive['files'][$_page['page_id']][$propertyName]['url']}">{$drive['files'][$_page['page_id']][$propertyName]['name']}</a>
-                                                
+                                               <a rel="external" href="{$basePath}{$drive['files'][$_page['page_id']][$propertyName]['url']}">{$drive['files'][$_page['page_id']][$propertyName]['name']}</a>
+
                                             {/ifset}
                                         {/ifset}
                                     </td>
 
                                 </tr>
-                           
-                                
+
+
                         {/foreach}
-                        
+
 
                     </table>
-                    
-                    
+
+
                     <div class="accordion">
                         <h3><a href="#">SEO</a></h3>
                         <div>
@@ -251,7 +261,7 @@
                                         {input $code.'-page_title'}
                                     </td>
                                 </tr>
-                                
+
                                 <tr>
                                     <td>
                                         {label $code.'-link_title' /}
@@ -277,7 +287,7 @@
                                         {input $code.'-meta_keys'}
                                     </td>
                                 </tr>
-                                
+
                                 <tr>
                                     <td>
                                         {label $code.'-meta_description' /}
@@ -286,13 +296,13 @@
                                         {input $code.'-meta_description'}
                                     </td>
                                 </tr>
-                                
+
                             </table>
                         </div>
                         {*<h3><a href="#">Pokročilá nastavení</a></h3>
                         <div>
                             <table>
-                                
+
                                 <tr>
                                     <td>
                                         {label $code.'-layout' /}
@@ -301,34 +311,34 @@
                                         {input $code.'-layout' }
                                     </td>
                                 </tr>
-                                
+
                             </table>
                         </div>
                        *}
                     </div>
-                    
-                    
+
+
                 </div>
             {/foreach}
-        
-            
-            
+
+
+
         {if count($activatedLanguages) > 1}
-            
+
         </div>
-    
+
         {/if}
-        
-        
+
+
     {/form}
-    
+
 {/block}
 
 {block down}
 <div id="layout_workspace">
         <div>
             {for $i=1;$i<7;$i++}
-                <a href="#" onclick="return setPageSelectValue({$i})"><img src="{$basePath}/images/layouts/layout_style_{$i}.png" alt="rozvrzeni {$i}" title="rozvrzeni {$i}" /></a> 
+                <a href="#" onclick="return setPageSelectValue({$i})"><img src="{$basePath}/images/layouts/layout_style_{$i}.png" alt="rozvrzeni {$i}" title="rozvrzeni {$i}" /></a>
             {/for}
         </div>
     </div>

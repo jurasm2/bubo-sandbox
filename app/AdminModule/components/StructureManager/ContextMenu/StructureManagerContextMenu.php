@@ -2,7 +2,9 @@
 
 namespace ContextMenu;
 
-class StructureManagerContextMenu extends \BuboApp\AdminModule\Components\ContextMenu {
+use BuboApp\AdminModule\Components\ContextMenu;
+
+class StructureManagerContextMenu extends ContextMenu {
 
     public function setParams($params) {
         $this->treeNodeId = $params[0];
@@ -15,17 +17,7 @@ class StructureManagerContextMenu extends \BuboApp\AdminModule\Components\Contex
 
         $template->treeNodeId = $this->treeNodeId;
 
-//        dump($template->treeNodeId);
-
-//        $parentTreeNodeId = 1;
-
         $labels = $this->presenter->pageManagerService->getAllLabels($this->parent->getLanguage());
-
-//        $assignedActiveLabels = array();
-//
-//        $passiveLabels = array();
-//        $assignedPassiveLabels = array();
-
         if ($this->visible) {
 
             $params = array('treeNodeId' => $this->treeNodeId, 'lang' => $this->parent->getLanguage(), 'searchAllTimeZones'  =>  TRUE);

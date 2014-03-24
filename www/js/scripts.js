@@ -221,4 +221,8 @@ $(document).ready(function(){
 
     });
 
+    $('input.are-you-sure').click(function() {
+        return confirm("Opravdu?");
+    })
+
 });

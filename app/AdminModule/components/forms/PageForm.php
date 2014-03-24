@@ -21,9 +21,6 @@ class PageForm extends BaseForm {
     public function __construct($parent, $name) {
         parent::__construct($parent, $name);
 
-//        dump('tu');
-//        die();
-
         $treeNodeId = $this->presenter->getParam('id');
         $labelId = $this->presenter->getParam('labelId');
         $entity = $this->presenter->getParam('entity');
@@ -46,9 +43,6 @@ class PageForm extends BaseForm {
                 $this->createUrl = FALSE;
             }
         }
-
-//        dump($entityConfig);
-//        die();
 
         $labelProperties = array();
         $label = NULL;
@@ -170,6 +164,9 @@ class PageForm extends BaseForm {
                 // !! create language section
                 $langForms[$langCode] = $this->addContainer($langCode);
 
+//                dump($mandatoryProperties);
+//                die();
+
                 // mandatory parameters (will be in all pageForms??)
                 foreach ($mandatoryProperties as $key => $array) {
 
@@ -181,8 +178,11 @@ class PageForm extends BaseForm {
                                 break;
                     }
 
-                    if ($formItem !== NULL && isset($array['class'])) {
-                        $formItem->getControlPrototype()->class[] = $array['class'];
+                    if ($formItem !== NULL) {
+                        if (isset($array['class'])) {
+                            $formItem->getControlPrototype()->class[] = $array['class'];
+                        }
+                        $formItem->getLabelPrototype()->title = '_'.$key;
                     }
 
                     // manage classes for name and its listeners
@@ -215,9 +215,6 @@ class PageForm extends BaseForm {
 
 
                         switch ($property['engine']) {
-                            case 'parametrizer':
-                                $formItem = $langForms[$langCode]->addSubmit($propertyName, $property['label']);
-                                break;
                             case 'media':
                                 switch ($property['type']) {
                                     case 'mediaFile':
@@ -227,9 +224,25 @@ class PageForm extends BaseForm {
                                         $formItem = $langForms[$langCode]->addMediaFile($propertyName, $property['label']);
                                         break;
                                 }
-//                            default:
-//                                $formItem = $langForms[$langCode]->addHidden($propertyName, $property['label']);
-//                                break;
+                                break;
+                            case 'label':
+                                $currentLanguage = $this->presenter['structureManager']->getLanguage();
+                                $st = new \BuboApp\AdminModule\Components\SelectTraverser($this->presenter);
+                                $label = $this->presenter->pageManagerService->getLabelByName($property['bind']['labelName']);
+                                $selectData = array();
+                                if ($label !== NULL) {
+                                    $labelRoots = $this->presenter->pageManagerService->getLabelRoots($label['label_id'], $currentLanguage);
+                                    $myRoot = reset($labelRoots);
+
+                                    $st->setTopLevelPage($myRoot);
+                                    $st->hideRootElement();
+                                    $selectData = $st->getSelectMenu($currentLanguage);
+                                }
+                                $formItem = $langForms[$langCode]->addSelect($propertyName, $property['label'], $selectData);
+                                if (isset($property['prompt'])) {
+                                    $formItem->setPrompt($property['prompt']);
+                                }
+                                $formItem->getControlPrototype()->style = 'font-family:monospace;font-size:12px;';
                         }
 
 
@@ -237,12 +250,21 @@ class PageForm extends BaseForm {
                     } else {
 
                             switch ($property['type']) {
-                                case 'text': $formItem = $langForms[$langCode]->addText($propertyName, $property['label']);
+                                case 'text':
+                                case 'external_url':
+                                        $formItem = $langForms[$langCode]->addText($propertyName, $property['label']);
                                         if (isset($property['class'])) {
                                             $formItem->getControlPrototype()->class = $property['class'];
                                         }
                                         break;
-                                case 'textArea': $formItem = $langForms[$langCode]->addTextArea($propertyName, $property['label']);
+                                case 'textArea':
+                                        $formItem = $langForms[$langCode]->addTextArea($propertyName, $property['label']);
+                                        if (isset($property['class'])) {
+                                            $formItem->getControlPrototype()->class = $property['class'];
+                                        }
+                                        break;
+                                case 'checkbox':
+                                        $formItem = $langForms[$langCode]->addCheckbox($propertyName, $property['label']);
                                         if (isset($property['class'])) {
                                             $formItem->getControlPrototype()->class = $property['class'];
                                         }
@@ -257,12 +279,16 @@ class PageForm extends BaseForm {
                                             $formItem->setRequired($property['required']);
                                         }
                                         break;
-                                case 'color': $formItem = $langForms[$langCode]->addText($propertyName, $property['label']);
+                                case 'color':
+                                        $formItem = $langForms[$langCode]->addText($propertyName, $property['label']);
                                         $formItem->getControlPrototype()->type = 'color';
                                         break;
                             }
 
                     }
+
+                    if ($formItem !== NULL)
+                        $formItem->getLabelPrototype()->title = '_'.$propertyName;
                 }
 
             }
@@ -285,8 +311,6 @@ class PageForm extends BaseForm {
 
 
         // load templates -> get only existing and with nice names (if possible)
-//        dump($entityConfig);
-//        die();
         $loadTemplatesWithUrl = TRUE;
         if (isset($entityConfig['entityMeta']) && isset($entityConfig['entityMeta']['createUrl'])) {
             $loadTemplatesWithUrl = $entityConfig['entityMeta']['createUrl'];
@@ -709,15 +733,6 @@ class PageForm extends BaseForm {
         $treeNodeId = (int) $this->presenter->getParam('id');
         $labelId = $this->presenter->getParam('labelId');
 
-        $submitter = $form->isSubmitted();
-
-        if (\Nette\Utils\Strings::startsWith($submitter->name, 'ext_')) {
-            $this->presenter->extManagerService->redirect($submitter->name);
-        }
-
-//        dump($submitter->name);
-//        die();
-
         $values = $form->getValues();
 
         if (!isset($values['layout'])) {
@@ -730,10 +745,6 @@ class PageForm extends BaseForm {
             }
         }
 
-//
-//        dump($values);
-//        die();
-
         $entity = $values['entity'];
         $parent = $values['parent'];
         $layout = $values['layout'];
@@ -745,8 +756,6 @@ class PageForm extends BaseForm {
                         'module'    =>  $this->presenter->pageManagerService->getCurrentModule()
         );
         $this->presenter->pageModel->maybeChangeParent($treeNodeId, $parentData);
-//        dump('tu');
-//        die();
         $whatToPublish = $values['what_to_publish'];
 
 

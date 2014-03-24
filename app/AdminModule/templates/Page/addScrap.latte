@@ -15,9 +15,9 @@
 
     <script>
         $(function() {
-            
+
             function writeThrough($value, $propertyName, $langs, $type, $el) {
-                    
+
                     // writeThrough
                     for (var i=0; i<$langs.length; i++) {
                         if ($type == 'text') {
@@ -30,19 +30,19 @@
                     // highlight
                     var $id = $el.attr('id');
                     $('label[for="'+$id+'"]').attr('style', 'font-weight:bold');
-                    
-                
+
+
             }
-            
+
             $('span.writeThrough').live('click', function() {
-                
+
                                 var $currentLang = $(this).attr('data-code');
-                                var $propertyName = $(this).attr('data-propertyName');                
-                                var $sourceInputName = $currentLang+'['+$propertyName+']';                                
-                                
+                                var $propertyName = $(this).attr('data-propertyName');
+                                var $sourceInputName = $currentLang+'['+$propertyName+']';
+
                                 // text and submits
                                 var $type = $('input[name="'+$sourceInputName+'"]').attr('type');
-                                
+
                                 // chceck texareas
                                 if ($type == undefined) {
                                     $textarea = $('textarea[name="'+$sourceInputName+'"]');
@@ -50,75 +50,75 @@
                                         $type = 'textarea';
                                     }
                                 }
-                                
-                                
-                                var $value;                                
-                                
+
+
+                                var $value;
+
                                 var $el;
-                                
+
                                 if ($type == 'text') {
                                     $el = $('input[name="'+$sourceInputName+'"]');
                                 } else if ($type == 'textarea') {
                                     $el = $('textarea[name="'+$sourceInputName+'"]');
                                 }
-                                
+
                                 $value = $el.val();
                                 //alert($type, $propertyName);
-                                
-                                
+
+
                                 {var $var = '["'.implode('","',array_keys($activatedLanguages)).'"]'}
                                 var $langs = {!$var};
                                 writeThrough($value, $propertyName, $langs, $type, $el);
-                                
+
 //                                //$selectors = new Array;
 //                                for (var i=0; i<$langs.length; i++) {
 //                                    //$selectors[i]= "input[name="+ $langs[i]+"]";
 //                                    $('input[name="'+$langs[i]+'['+$(this).attr('data-propertyName')+']"]').val($value);
 //                                }
-                                
+
             })
-            
-            
-            
+
+
+
         })
     </script>
 
     <div class="tom_cleaner"></div>
-    
-    
-    
-    
+
+
+
+
     {* {widget pageForm} *}
-    
-    
-    
+
+
+
     {form pageForm}
-    
-        
+
+
         {input what_to_publish}
         {input send}
         {input cancel}
-    
+
         {input parent}
-    
+
     <br />
     <br />
-    
-    
+
+
     {label layout /}
     {input layout}
-    
+
     <br />
-    
+
     <script type="text/javascript">
-        
+
         $(function() {
             $( "#tabs" ).tabs({ selected: {$presetTab} });
         })
-        
+
     </script>
-    
-        
+
+
         {if count($activatedLanguages) > 1}
         <div id="tabs">
             <ul>
@@ -127,21 +127,21 @@
             {/foreach}
             </ul>
         {/if}
-        
-            {foreach $activatedLanguages as $code => $language}
-            
-                <div id="tabs-{$code}">
-            
 
-                    <div style="display:none;">{input $code.'-parent_url'}</div>
+            {foreach $activatedLanguages as $code => $language}
+
+                <div id="tabs-{$code}">
+
+
                     
+
                     {*snippet urlEditor-$code}
                         {control urlEditor_$code}
                     {/snippet*}
-                    
+
                     <table>
-                        
-                        
+
+
                         <tr>
                             <td>
                                 {label $code.'-name' /}
@@ -151,7 +151,7 @@
                             </td>
 
                         </tr>
-                        
+
 
                         {*
                         <tr>
@@ -162,7 +162,7 @@
                                 {input $code.'-start_public'}
                             </td>
                         </tr>
-                        
+
                         <tr>
                             <td>
                                 {label $code.'-stop_public' /}
@@ -173,7 +173,7 @@
                         </tr>
                         *}
                         {foreach $form->properties as $propertyName => $property}
-                           
+
                             <tr>
                                 <td>
                                     {label $code.'-'.$propertyName /}
@@ -186,13 +186,13 @@
                                 </td>
 
                             </tr>
-                           
+
                         {/foreach}
-                        
+
 
                     </table>
-                    
-                    
+
+
                     <div class="accordion">
                         <h3><a href="#">SEO</a></h3>
                         <div>
@@ -214,7 +214,7 @@
                                         {input $code.'-page_title'}
                                     </td>
                                 </tr>
-                                
+
                                 <tr>
                                     <td>
                                         {label $code.'-link_title' /}
@@ -240,7 +240,7 @@
                                         {input $code.'-meta_keys'}
                                     </td>
                                 </tr>
-                                
+
                                 <tr>
                                     <td>
                                         {label $code.'-meta_description' /}
@@ -249,25 +249,25 @@
                                         {input $code.'-meta_description'}
                                     </td>
                                 </tr>
-                                
+
                             </table>
                         </div>
-                       
+
                     </div>
-                    
-                    
+
+
                 </div>
             {/foreach}
-        
-            
-            
+
+
+
         {if count($activatedLanguages) > 1}
-            
+
         </div>
-    
+
         {/if}
-        
-        
+
+
     {/form}
 
 {/block}
@@ -276,7 +276,7 @@
 <div id="layout_workspace">
         <div>
             {for $i=1;$i<7;$i++}
-                <a href="#" onclick="return setPageSelectValue({$i})"><img src="{$basePath}/images/layouts/layout_style_{$i}.png" alt="rozvrzeni {$i}" title="rozvrzeni {$i}" /></a> 
+                <a href="#" onclick="return setPageSelectValue({$i})"><img src="{$basePath}/images/layouts/layout_style_{$i}.png" alt="rozvrzeni {$i}" title="rozvrzeni {$i}" /></a>
             {/for}
         </div>
     </div>

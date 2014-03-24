@@ -8,7 +8,8 @@
         "jurasm2/multiplefileupload": "dev-develop",
         "dibi/dibi": "2.0.*",
         "jurasm2/gettexttranslator": "2.0.*",
-        "srigi/nette-confirmationdialog": "dev-master"
+        "srigi/nette-confirmationdialog": "dev-master",
+        "jpgraph/jpgraph": "dev-master"
     },
     "authors": [
         {

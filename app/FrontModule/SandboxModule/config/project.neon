@@ -8,5 +8,5 @@ modules:
             en: English
         defaultLang: cs
         hosts:
-            - 'tension.mrnet.cz/www/'
-            - 'localhost/bubak3/www/'
+            - 'tension.mrnet.cz/'
+            - 'localhost/bubak3/'

@@ -1,0 +1,7 @@
+RewriteEngine On
+
+#RewriteCond %{HTTP_HOST} ^site.cz
+#RewriteRule (.*) http://www.site.cz/$1 [QSA,L,R=301]
+
+RewriteRule ^(.*)$ www/$1 [L,QSA]
+

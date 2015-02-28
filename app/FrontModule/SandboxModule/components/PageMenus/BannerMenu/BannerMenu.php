@@ -5,7 +5,7 @@ namespace FrontModule\SandboxModule\Components\PageMenus;
 use Nette\Utils\Html,
     Bubo;
 
-class NewsMenu extends Bubo\Navigation\PageMenu {
+class BannerMenu extends Bubo\Navigation\PageMenu {
     
     public function __construct($parent, $name, $lang) {
         parent::__construct($parent, $name, $lang);

@@ -16,7 +16,7 @@ class DefaultGallery extends Control {
     }
 
     public function setTemplateFile() {
-        $this->templateFile = __DIR__ . '/templates/advanced.latte';
+        $this->templateFile = __DIR__ . '/templates/default.latte';
     }
 
     public function getGalleryId() {
@@ -34,9 +34,6 @@ class DefaultGallery extends Control {
 
             //if (preg_match('#gallery\-([0-9]+)#', $gid, $matches)) {
                 $images = $this->presenter->mediaManagerService->loadImages($gid, $mode);
-
-//                dump($images);
-//                die();
 
                 $template = $this->template;
                 $template->setFile($this->templateFile);

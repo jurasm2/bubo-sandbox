@@ -2,116 +2,119 @@
 # SECURITY WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
 # http://nette.org/security-warning
 #
-common:
-    parameters:
 
-#        langs:
-#            en: English
-#            cs: Čeština
-#            cn: 中文
-#            ru: Русский
-#            it: Italština
-#            de: Němčina
-#            hu: Maďarština
-#        defaultLang: en
-        pageLoadingMethod: # lazy or eager? by default: lazy
-            admin: eager
+parameters:
+
+#	langs:
+#		en: English
+#		cs: Čeština
+#		cn: 中文
+#		ru: Русский
+#		it: Italština
+#		de: Němčina
+#		hu: Maďarština
+#	defaultLang: en
+	pageLoadingMethod: # lazy or eager? by default: lazy
+		admin: eager
 #            'front:maxpraga': lazy
 #            'front:sabrina': eager
-        useLinks: yes       # use links
+	useLinks: yes       # use links
 
-        media:
-            rootFolder: media
+	# virtual drive configuration
+	media:
+		rootFolder: media
 
-    gettextTranslator:
-        lang: cs
-        files:
-            front: %appDir%/lang # for module Front and other non-specified modules
-            #admin: %appDir%/lang # for module Admin
-        # optional with defaults
-        layout: horizontal # or: vertical
-        height: 450
+php:
+	date.timezone: Europe/Prague
+	#%session.save_path: "temp/sessions"
 
-    php:
-        date.timezone: Europe/Prague
-        #%session.save_path: "temp/sessions"
+nette:
+	application:
+		errorPresenter: Error
+		mapping:
+			*: BuboApp\*Module\*Presenter
+	session:
+		save_path: "%tempDir%/sessions"
+		expiration: "+ 5 days"
 
-    nette:
-        session:
-            save_path: "%tempDir%/sessions"
-            expiration: "+ 5 days"
-        container:
-            debugger: true
+di:
+	debugger: true  #debugger bar panel
+	accessors: true  #enables $container->serviceName shortcut
 
-    services:
-        # custom presenter factory assuming all presenters to have 'BuboApp' as the root namespace
-        nette.presenterFactory:
-            factory: Bubo\Application\PresenterFactory::factory
-        database:
-            factory: Bubo\DibiFactory::createConnection
-        authenticator:
-            class: Bubo\Security\Authenticator
-            arguments: [@database]
-        authorizator:
-            class: Nette\Security\Permission
-            setup:
-                - addRole('guest')
-                - addRole('editor')
-                - addRole('admin')
-                - addResource('Admin:Default')
-                - addResource('Admin:Page')
-                - addResource('Admin:Media')
-                - addResource('Admin:Label')
-                - addResource('Admin:Tiny')
-                - allow('editor', 'Admin:Default')
-                - allow('admin')
-        modelLoader:
-            class: Bubo\Services\ModelLoader
-            arguments: [@container]
-        pageManager:
-            class: Bubo\Services\PageManager
-            arguments: [@container, %pageLoadingMethod%]
-        langManager:
-            class: Bubo\Services\LangManager
-            arguments: [@container]
-        traverserFactory:
-            class: Bubo\Services\TraverserFactory
-            arguments: [@container]
-        resourceManager:
-            class: Bubo\Services\ResourceManager
-            arguments: [@database, @modelLoader]
-        commandExecutor:
-            class: Bubo\Commanding\CommandExecutor
-            arguments: [@pageManager]
-        configLoader:
-            class: Bubo\Services\ConfigLoader
-            arguments: [@container]
-        virtualDrive:
-            class: Bubo\Services\VirtualDrive\Drive
-            arguments: [@database, @container]#[@modelLoader]
-        extManager:
-            class: Bubo\Services\ExtManager
-            arguments: [@container]
-        projectManager:
-            class: Bubo\Services\ProjectManager
-            arguments: [@container]
-        pdfConverter:
-            class: Bubo\Services\PdfConverter
-            arguments: [@container]
-        mediaManager:
-            class: Bubo\Services\MediaManager
-            arguments: [@container, %media.rootFolder%]
-        cacheStorage:
-            class: Nette\Caching\Storages\FileStorage
-            arguments: [%tempDir%/cache]
-            #class: Nette\Caching\Storages\DevNullStorage
-#        translator:
-#            class: GettextTranslator\Gettext
-#            arguments: [@session, @cacheStorage, @httpResponse]
+extensions:
+	translation: Kdyby\Translation\DI\TranslationExtension
+
+translation:
+	default: cs
+	resolvers:
+		session: off
+		header: off
+
+services:
+	translation.userLocaleResolver.param: Bubo\Translation\LocaleResolver\LangParamResolver
+	- BuboApp\RouterFactory
+	router: @BuboApp\RouterFactory::createRouter
+	database:
+	 	class: Bubo\Database\Connection
+	 	arguments: [%database%]
+	authenticator:
+		class: Bubo\Security\Authenticator
+		arguments: [@database]
+	authorizator:
+		class: Nette\Security\Permission
+		setup:
+			- addRole('guest')
+			- addRole('editor')
+			- addRole('admin')
+			- addResource('Admin:Default')
+			- addResource('Admin:Page')
+			- addResource('Admin:Media')
+			- addResource('Admin:Label')
+			- addResource('Admin:Tiny')
+			- allow('editor', 'Admin:Default')
+			- allow('admin')
+	modelLoader:
+		class: Bubo\Services\ModelLoader
+		arguments: [@container]
+	pageManager:
+		class: Bubo\Services\PageManager
+		arguments: [@container, %pageLoadingMethod%]
+	langManager:
+		class: Bubo\Services\LangManager
+		arguments: [@container]
+	traverserFactory:
+		class: Bubo\Services\TraverserFactory
+		arguments: [@container]
+	resourceManager:
+		class: Bubo\Services\ResourceManager
+		arguments: [@database, @modelLoader]
+	commandExecutor:
+		class: Bubo\Commanding\CommandExecutor
+		arguments: [@pageManager]
+	configLoader:
+		class: Bubo\Services\ConfigLoader
+		arguments: [@cache.storage, %projectDir%]
+#	virtualDrive:
+#		class: Bubo\Services\VirtualDrive\Drive
+#		arguments: [@database, @container]#[@modelLoader]
+	extManager:
+		class: Bubo\Services\ExtManager
+		arguments: [@container]
+	projectManager:
+		class: Bubo\Services\ProjectManager
+		arguments: [@container]
+	pdfConverter:
+		class: Bubo\Services\PdfConverter
+		arguments: [@container]
+	mediaManager:
+		class: Bubo\Services\MediaManager
+		arguments: [@container, %media.rootFolder%]
+	cacheStorage:
+		class: Nette\Caching\Storages\FileStorage
+		arguments: [%tempDir%/cache]
+		#class: Nette\Caching\Storages\DevNullStorage
+	#        translator:
+	#            class: GettextTranslator\Gettext
+	#            arguments: [@session, @cacheStorage, @httpResponse]
 
 
-# /translator
-
-production < common:
-
-development < common:

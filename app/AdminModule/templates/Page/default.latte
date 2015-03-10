@@ -149,11 +149,11 @@
                                     <span style="color:red">[LIVE]</span>
                                 {/if}
                                 <strong>{if $currentTimeZone == 1}deferred {/if}{$defaults[$code][status]}</strong> verze {$defaults[$code][version]} (uloženo <i>{*$pageAuthor->login*}</i>{$defaults[$code][created]|timeAgoInWords})
-                                {? if (isset($defaults[$code][time_zone][0]['published'])): }
+                                {ifset $defaults[$code][time_zone][0]['published'] }
                                 {var $_labels = (array) isset($defaults[$code][time_zone][0]['published']) ? array_keys($defaults[$code][time_zone][0]['published']) : array()}
                                 {var $url = array_search($homepageId, $_labels) === FALSE ? $defaults[$code][url] : ''}
                                 <a target="_blank" href="{plink $moduleNamespace lang => $code == $dl ? null : $code, url => $url}">náhled</a>
-                                {? endif; }
+                                {/ifset}
                                 {if (isset($defaults[$code][time_zone][1]) && $currentTimeZone != 1)}<span style="float:right;">exituje <a n:href="this tab => $code, waiting => TRUE">stránka</a> s odloženou publikací</span>{/if}
                                 {if (isset($defaults[$code][time_zone][0]) && $currentTimeZone != 0)}<span style="float:right;">jit na <a n:href="this tab => $code, waiting => FALSE">aktuální stránku</a></span>{/if}
                             {else}

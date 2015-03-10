@@ -26,10 +26,6 @@ class DefaultGallery extends Control {
     public function render($gid = NULL, $page = NULL, $mode = NULL) {
         $this->setTemplateFile();
 
-
-//        dump($gid, $mode);
-//        die();
-
         if ($mode !== NULL) {
 
             //if (preg_match('#gallery\-([0-9]+)#', $gid, $matches)) {

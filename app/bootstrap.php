@@ -1,34 +1,34 @@
 <?php
 /* version Virgin1 */
 
-use Nette\Diagnostics\Debugger,
-	Nette\Application\Routers\Route,
-	Nette\Application\Routers\RouteList,
-	Nette\Application\Routers\SimpleRouter;
-//use MultipleFileUpload;
-
-//ini_set('max_execution_time', 6);
-
-
 // Load Nette Framework
 require LIBS_DIR . '/autoload.php';
 
-// Configure application
-$configurator = new Nette\Config\Configurator;
+$developedLibraries = [
+	'/opt/lampp/htdocs/bubo',
+	'/opt/lampp/htdocs/datagrid',
+];
 
-//$configurator->onCompile[] = function ($configurator, $compiler) {
-//    $compiler->addExtension('gettextTranslator', new GettextTranslator\DI\Extension);
-//};
+// Configure application
+$configurator = new Nette\Configurator;
+
+\Tracy\Debugger::$showLocation = true;
 
 // Enable Nette Debugger for error visualisation & logging
-$configurator->setDebugMode();
+$configurator->setDebugMode(TRUE);
 $configurator->enableDebugger(__DIR__ . '/../log');
 
 // Enable RobotLoader - this will load all classes automatically
 $configurator->setTempDirectory(__DIR__ . '/../temp');
-$configurator->createRobotLoader()
-	->addDirectory(APP_DIR)
-	->register();
+$robotLoader = $configurator->createRobotLoader()->addDirectory(APP_DIR);
+
+if ($developedLibraries) {
+	foreach ($developedLibraries as $libDirectory) {
+		$robotLoader->addDirectory($libDirectory);
+	}
+}
+
+$robotLoader->register();
 
 
 //Extras\Debug\ComponentTreePanel::register();
@@ -37,12 +37,8 @@ $configurator->createRobotLoader()
 $configurator->addConfig(CONFIG_DIR . '/config.neon');
 //$configurator->addConfig(CONFIG_DIR . '/config2.neon');
 
-
-$loader = new Nette\Config\Loader;
+$loader = new Nette\DI\Config\Adapters\NeonAdapter();
 $serverName = $_SERVER['SERVER_NAME'];
-
-//dump($serverName);
-//die();
 
 $selectedModuleNs = NULL;
 $selectedHost = NULL;
@@ -58,6 +54,7 @@ foreach (Nette\Utils\Finder::findDirectories('*Module')->in(APP_DIR.'/FrontModul
 
     if (is_file($projectFile) && is_file($configFile)) {
         $c = $loader->load($projectFile);
+
 
         foreach ($c['modules'] as $moduleNs => $moduleData) {
 
@@ -81,8 +78,11 @@ foreach (Nette\Utils\Finder::findDirectories('*Module')->in(APP_DIR.'/FrontModul
 
     if ($selectedModuleNs !== NULL) break;
 
+
 }
 
+//\Tracy\Debugger::dump($selectedHost);
+//die();
 //dump($selectedModuleNs);
 //die();
 
@@ -96,123 +96,10 @@ $params = array(
 );
 $configurator->addParameters($params);
 
-$configurator->onCompile[] = function ($configurator, $compiler) {
-    $compiler->addExtension('gettextTranslator', new GettextTranslator\DI\Extension);
-};
 
 $container = $configurator->createContainer();
 
 $appDir = $container->parameters['appDir'];
-
-// Translator
-//$translator = $container->getService("translator");
-//$translator->addFile("$appDir/lang","core"); // add block homepage to (app/lang/{lang}.homepage.mo
-//$configurator->container->getService("translator")->addFile("%appDir%/lang/","about"); // add another block, if you need to separate particular pages
-//GettextTranslator\Panel::register($container->application, $container->translator, $container->session, $container->httpRequest, 'horizontal', '450');
-//$translator->addSetup('GettextTranslator\Panel::register', array('@application', '@self', '@session', '@httpRequest', $config['layout'], $config['height']));
-
-//Nette\Diagnostics\Debugger::$bar->addPanel(new static($container->application, $container->translator, $container->session, $container->httpRequest, 'horizontal', '450'));
-
-// Setup router using mod_rewrite detection
-if (function_exists('apache_get_modules') && in_array('mod_rewrite', apache_get_modules())) {
-
-    $dashedCamel = array(
-                            Route::FILTER_IN => array('Helpers\Inflectors', 'dash2camel'),
-                            Route::FILTER_OUT => array('Helpers\Inflectors', 'camel2dash')
-                        );
-
-	$container->router = $router = new RouteList;
-	$router[] = new Route('index.php', 'Admin:Default:default', Route::ONE_WAY);
-
-    // CRON ROUTES
-    $router[] = $cronRouter = new RouteList('Cron');
-	$cronRouter[] = new Route('cron', 'Cron:default');
-
-
-    // ADMIN ROUTES
-	$router[] = $adminRouter = new RouteList('Admin');
-    $adminRouter[] = new Route("[<lang [a-z]{2}>/]admin/plugin-interpreter/<plugin>/<view>",
-                array(
-                   'presenter'  =>  'Plugin',
-                   'action'     =>  'interpret',
-                   'plugin'     =>  $dashedCamel,
-                   'view'       =>  $dashedCamel
-                   )
-    );
-
-    $adminRouter[] = new Route("admin/copy-layout", 'Default:copyLayout');
-    $adminRouter[] = new Route("admin/remove-pages", 'Default:removePages');
-    $adminRouter[] = new Route("admin/repair-urls", 'Default:repairUrls');
-
-    $adminRouter[] = new Route("show-draft/<url>", array(
-
-                                                           'presenter' =>  'Default',
-                                                           'action'    =>  'showDraft',
-                                                           'url'       =>  array(
-                                                                                Route::FILTER_OUT => NULL
-                                                                            )
-                                                           )
-    );
-
-
-    $adminRouter[] = new Route("[<lang [a-z]{2}>/]admin/<presenter>/<action>[/<id>]","Default:default");
-
-
-
-	$router[] = $frontRouter = new RouteList('Front');
-
-
-
-    $frontRouter[] = new Route("file/<url>",array(
-        'presenter'=>'Image',
-        'action'=>'default'
-    ));
-    $frontRouter[] = new Route("file/<action>",array(
-        'presenter'=>'Image',
-        'action'=>'default'
-    ));
-    $frontRouter[] = new Route("thumb/<name>",array(
-        'presenter'=>'Image',
-        'action'=>'thumbnail',
-        'filename'=>array(Route::FILTER_OUT => NULL),
-        'name'=>NULL,
-        'lang'=>NULL
-    ));
-
-
-    $selectedModule = $selectedModuleNs;
-    // make from ns module name
-    $slashPos = strrpos($selectedModuleNs, '/', -1);
-    if ($slashPos !== FALSE) {
-        $selectedModule = substr($selectedModuleNs, $slashPos+1);
-    }
-
-    $m = explode('/', $selectedModuleNs);
-    array_shift($m);
-
-
-    if ($selectedModuleNs !== NULL) {
-
-        $frontRouter[] = new Route("//".$selectedHost."[<lang [a-z]{2}>/][<url>]", array(
-                                            //'module'    =>  $selectedModule,
-                                            'module'    =>  implode(':', $m),
-                                            'presenter' =>  'Default',
-                                            'action'    =>  'default',
-                                            'url'       =>  array(
-                                                                Route::FILTER_OUT => NULL,
-                                                                Route::PATTERN => ".*"
-                                            )
-        ));
-
-    }
-
-
-} else {
-	$container->router = new SimpleRouter('Admin:Default:default');
-}
-
-
-
 
 
 //\Kdyby\Forms\Containers\Replicator::register();
@@ -226,7 +113,7 @@ if (function_exists('apache_get_modules') && in_array('mod_rewrite', apache_get_
 \MultipleFileUpload\MultipleFileUpload::register();
 \MultipleFileUpload\MultipleFileUpload::getUIRegistrator()
     ->clear()
-//    ->register("MFUUIHTML4SingleUpload")
+    //->register('MultipleFileUpload\UI\HTML4SingleUpload');
     ->register('MultipleFileUpload\UI\Plupload');
 ////            ->register("MFUUISwfupload");
 ////            ->register("MFUUIUploadify");
@@ -253,6 +140,8 @@ function FormContainer_addMediaFile(/*\Nette\Application\UI\Form*/ $_this, $name
 
 \Nette\Forms\Container::extensionMethod("\Nette\Forms\Container::addMediaFile", "FormContainer_addMediaFile");
 
-// Run the application!
-$container->application->run();
+
+return $container;
+
+
 

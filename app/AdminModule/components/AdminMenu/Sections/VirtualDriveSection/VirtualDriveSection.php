@@ -9,6 +9,4 @@ class VirtualDriveSection extends Section {
        
         $template->render();
     }
-
-    
 }

@@ -1,23 +1,10 @@
-production:
-    parameters:
-        database:
-            driver: mysql
-            host: localhost
-            username: ***
-            password: ***
-            database: ***
-            charset: utf8
-            profiler: true
-
-
-development:
-    parameters:
-        database:
-            driver: mysql
-            host: localhost
-            username: root
-            password: 
-            database: bubo
-            charset: utf8
-            profiler: true
+parameters:
+	database:
+		driver: mysql
+		host: localhost
+		username: root
+		password:
+		database: bubo-cms
+		charset: utf8
+		profiler: true
 

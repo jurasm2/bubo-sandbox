@@ -3,9 +3,7 @@
 namespace BuboApp\AdminModule;
 
 use BuboApp;
-
 use Bubo;
-
 use Nette\Utils\Arrays;
 use Nette\Security\User;
 
@@ -24,10 +22,10 @@ abstract class BasePresenter extends BuboApp\BasePresenter
      * List of activated admin sections
      * @var array
      */
-    protected $adminSections = array(
+    protected $adminSections = [
         'labelSection',
         'virtualDriveSection',
-    );
+    ];
 
     /**
      * Startup

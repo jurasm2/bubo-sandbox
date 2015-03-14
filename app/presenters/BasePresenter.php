@@ -1,8 +1,8 @@
 <?php
 namespace BuboApp;
 
+use Nette;
 use Bubo\Application\UI\Presenter;
-use GettextTranslator;
 
 /**
  * Base presenter for all application presenters.
@@ -65,7 +65,8 @@ abstract class BasePresenter extends Presenter
         $baseUrl = rtrim($this->presenter->getHttpRequest()->getUrl()->getBaseUrl(), '/');
         $this->baseUri = preg_replace('#https?://[^/]+#A', '', $baseUrl);
 
-        $resources = $this->context->resourceManager->getResources();
+	    // TODO use DI!!!!!!
+        $resources = $this->context->getService('resourceManager')->getResources();
 
         if (isset($this->user->identity->data)) {
             //dump($this->user->identity->data['role']->getAcl());
@@ -84,13 +85,13 @@ abstract class BasePresenter extends Presenter
     public function &__get($name)
     {
         if (preg_match('#([[:alnum:]]+Model)#', $name, $matches)) {
-            $model = $this->context->modelLoader->loadModel(ucfirst($matches[1]));
+            $model = $this->context->getService('modelLoader')->loadModel(ucfirst($matches[1]));
             return $model;
         } else if (preg_match('#([[:alnum:]]+)Service#', $name, $matches)) {
 
 
             if ($this->context->hasService($matches[1])) {
-                $service = $this->context->$matches[1];
+                $service = $this->context->getService($matches[1]);
                 switch ($matches[1]) {
                     case 'pageManager':
                     case 'extManager':

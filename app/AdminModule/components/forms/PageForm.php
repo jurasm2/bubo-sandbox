@@ -529,8 +529,8 @@ class PageForm extends BaseForm {
         $values = $form->getValues();
         $errors = $form->getErrors();
 
-        dump($errors);
-        die();
+//        dump($errors);
+//        die();
 
         $this->presenter->flashMessage(implode(', ', $errors), 'error');
         //$this->presenter->redirect('this');
@@ -599,13 +599,9 @@ class PageForm extends BaseForm {
 
     }
 
-    public function addformSubmited($form) {
-
+    public function addformSubmited($form)
+    {
         $values = $form->getValues();
-
-//        dump($values);
-//        die();
-
         $labelId = $this->presenter->getParam('labelId');
 
         $entity = $values['entity'];
@@ -680,12 +676,6 @@ class PageForm extends BaseForm {
             }
             $pageFormData['status'] = $status;
 
-//            dump($pageFormData);
-//            die();
-
-//            dump($entity);
-//            die();
-
             // create new version of the page
             $pageSet[$langCode] = $page = new \Bubo\Pages\CMSPage($this->presenter->context, $treeNodeId, $pageFormData, $entity);
 
@@ -698,18 +688,9 @@ class PageForm extends BaseForm {
                 $label = $this->presenter->pageManagerService->getLabel($labelId);
 
                 if (!empty($label)) {
-
-//                    dump($label);
-//                    die();
-
-                    //$page->assignPassiveLabel($labelId);
                     $this->presenter->labelModel->addPassiveLabelling($treeNodeId, $label);
-
                 }
-
             }
-
-
         }
 
         //if ($res['success']) {
@@ -784,9 +765,6 @@ class PageForm extends BaseForm {
 
         $allAlienUrls = $this->presenter->pageModel->getAllAlienUrls($referencingPages, $alienUrls, $this->presenter->langManagerService);
 
-//        dump($allAlienUrls);
-//        die();
-
         // first creating cycle
         foreach ($langVersions as $langCode => $publish) {
             // page form data
@@ -804,7 +782,6 @@ class PageForm extends BaseForm {
             $pageFormData['version'] = isset($latestPageVersions[$langCode]) ? ($latestPageVersions[$langCode]['version'] + 1) : 1;
             // add language
             $pageFormData['tree_node_id'] = $treeNodeId;
-
 
 
             // add status
@@ -829,12 +806,7 @@ class PageForm extends BaseForm {
             // create new version of the page
             $pageSet[$langCode] = $page = new \Bubo\Pages\CMSPage($this->presenter->context, $treeNodeId, $pageFormData, $entity);
 
-
-//            dump('chci ulozit stránku');
-//            die();
-
             $page->save($this->presenter, $allPageVersions, $allAlienUrls);
-
         }
 
 

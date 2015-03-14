@@ -10,11 +10,12 @@ class StructureManager extends Bubo\Components\ContextMenuControl {
 
     private $sessionSection;
 
-    public function __construct($parent, $name, $userId) {
+    public function __construct($parent, $name, $userId)
+    {
         parent::__construct($parent, $name);
         $this->userId = $userId;
 
-        $this->sessionSection = $this->presenter->context->session->getSection('structureManager');
+        $this->sessionSection = $this->presenter->context->getService('session')->getSection('structureManager');
         $this->sessionSection->labelMode = 'admin';
     }
 

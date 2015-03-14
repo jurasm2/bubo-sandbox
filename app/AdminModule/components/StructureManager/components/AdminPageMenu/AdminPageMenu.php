@@ -132,7 +132,7 @@ class AdminPageMenu extends \Bubo\Navigation\PageMenu {
 
         
 
-        $section = $this->presenter->context->session->getSection('structureManager');
+        $section = $this->presenter->context->getService('session')->getSection('structureManager');
 
         $adminLabelMode = TRUE;
         if ($section->labelMode) {

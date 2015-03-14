@@ -1,7 +1,8 @@
 {if $images}
-<div class="gallery">
-        {foreach $images as $item}
-            <a rel="pel-gal" href="{$basePath}{$galPath}{$item['filename']}" class="colorbox cboxElement"><img src="{$basePath}{$galPath}/thumbs/small/{$item['filename']}" alt=""></a>
-        {/foreach}
-</div>
+	<div class="gallery">
+		{foreach $images as $image}
+			{var $imageSizes = getimagesize($image->getDirPath(2))}
+			<img {$imageSizes[3]} src="{$image->getPath(2)}" alt="" />
+		{/foreach}
+	</div>
 {/if}

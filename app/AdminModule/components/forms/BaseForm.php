@@ -11,7 +11,7 @@ class BaseForm extends Form {
 
     public function __construct($parent, $name){
         parent::__construct($parent, $name);
-        $this->modelLoader = $this->getPresenter()->context->modelLoader;
+        $this->modelLoader = $this->getPresenter()->context->getService('modelLoader');
 
         $this->getElementPrototype()
                             ->novalidate('novalidate')

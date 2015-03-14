@@ -23,4 +23,8 @@ define('CONFIG_DIR', APP_DIR . '/config');
 define('DEFAULT_LANGUAGE', 'cs');
 
 // load bootstrap file
-require APP_DIR . '/bootstrap.php';
+//require APP_DIR . '/bootstrap.php';
+
+$container = require __DIR__ . '/../app/bootstrap.php';
+
+$container->getService('application')->run();

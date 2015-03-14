@@ -2,21 +2,23 @@
 
 namespace BuboApp\AdminModule\Forms;
 
-use Nette\Application\UI\Form,
-    Nette\Environment,
-    Nette\Security\AuthenticationException;
+use Nette\Application\UI\Form;
+use Nette\Security\AuthenticationException;
 
-class LoginForm extends Form {
+class LoginForm extends Form
+{
 
-    public function __construct($parent, $name, $action = '') {
+    public function __construct($parent, $name, $action = '')
+    {
         parent::__construct($parent, $name);
 
         $this->getElementPrototype()->class = 'login-form';
         
         $this->addProtection('STFU!');
         if($action == ''){
-            $request = $this->getHttpRequest();
-            $value = $request->getCookie('login');
+//            $request = $this->getHttpRequest();
+//            $value = $request->getCookie('login');
+	        $value = null;
             $this->addText('login', 'Uživatelské jméno:	')
                     ->addRule(Form::FILLED, 'Prosím zadajte přihlašovací jméno.');
             $this['login']->getControlPrototype()->class = "input";
@@ -37,19 +39,22 @@ class LoginForm extends Form {
         $this['send']->getControlPrototype()->addAttributes(array('class' => "submit"));
     }
 
-    public function formSubmited($form) {
+    public function formSubmited($form)
+    {
         try {
             $user = $this->getPresenter()->getUser();
             $user->login($form['login']->value, $form['password']->value);
             $user->setExpiration('+ 5 days', FALSE);
-            
-            $this->getPresenter()->getApplication()->restoreRequest($this->getPresenter()->backlink);
+
+            $this->getPresenter()->restoreRequest($this->getPresenter()->backlink);
             $this->getPresenter()->redirect('Default:default');
         } catch (AuthenticationException $e) {
             $form->addError($e->getMessage());
         }
     }
-    public function editFormSubmited($form) {
+
+    public function editFormSubmited($form)
+    {
         try {
             
             $model = $this->getPresenter()->context->modelLoader->loadModel('ConfigModel');

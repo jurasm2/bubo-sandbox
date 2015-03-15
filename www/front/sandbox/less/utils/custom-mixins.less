@@ -1,0 +1,42 @@
+.list-reset(@display: inline-block) {
+	padding: 0;
+	margin: 0;
+	li {
+		display: @display;
+	}
+}
+
+.iconize(@content) {
+	content: @content;
+	font-family: "fontello";
+	font-style: normal;
+	font-weight: normal;
+}
+
+.invisible() {
+	visibility: hidden;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	height: 1px; width: 1px;
+
+}
+
+.visible() {
+	visibility: visible;
+	overflow: visible;
+	clip: auto;
+	height: inherit; width: inherit;
+}
+
+.ellipsis() {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.transitionfix() {
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	-webkit-transform: translate3d(0, 0, 0);
+	-moz-transform: translate3d(0, 0, 0)
+}

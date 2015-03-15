@@ -1,8 +1,10 @@
 
 layouts:
-    subpageLayout.latte: "Běžná stránka"
-    homepageLayout.latte: "Domovská stránka"
-    photogallery.latte: "Stránka fotogalerie"
-    photogalleryDetail.latte: "Detail fotogalerie"
-    news.latte: "Novinky"
-    newsDetail.latte: "Detail novinky"
+    carousel.latte: "Carousel"
+    matrix_menu.latte: "Grid"
+    swiper.latte: "Swiper <---->"
+    two_columns.latte: "2 columns"
+    contact.latte: "Contact form"
+    subpage.latte: "Subpage"
+    homepage.latte: "Homepage"
+

@@ -50,22 +50,3 @@ properties:
         mode: '800x600-shrink_only|120x120-shrink_only'
         label: 'Galerie'
 
-    courses:
-        type: mediaGallery
-        engine: label
-        prompt: ':: Vyberte kurz ::'
-        bind:
-            labelName: Kurzy
-        label: 'Kurzy'
-
-
-#    flip:
-#        type: select
-#        label: 'Varianta flipu (select)'
-#        data:
-#            v1: 'Varianta 1'
-#            v2: 'Varianta 2'
-#            v3: 'Varianta 3'
-#            v4: 'Varianta 4'
-#        prompt: ':: Vyberte typ flipu ::'
-#        #required: 'Vyberte kraj'

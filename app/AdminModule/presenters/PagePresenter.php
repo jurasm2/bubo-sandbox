@@ -19,7 +19,7 @@ class PagePresenter extends BasePresenter {
         $this->template->numberOfTrashed = 0;
     }
 
-    public function handleGetParentsUrls($treeNodeId) {
+    public function actionGetParentsUrls($treeNodeId) {
 
         $allLanguages = $this->presenter->langManagerService->getLangs();
         $defaultLanguage = $this->presenter->langManagerService->getDefaultLanguage();

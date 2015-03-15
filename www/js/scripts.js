@@ -198,20 +198,21 @@ $(document).ready(function(){
      * Change panrent feature
      *
      */
-    $("#frmpageForm-parent").live("change", function() {
+    $("#frm-pageForm-parent").live("change", function() {
         var $parentsUrl = _getGlobalValueFromDataAttribute('parentsurl');
         var $parent = $(this).val();
+        console.log($parentsUrl);
         $.get($parentsUrl, { treeNodeId: $parent }, function($data) {
-            if ( $data.parentUrls) {
+            if ($data.parentUrls) {
                 for (var $langCode in $data.parentUrls) {
-                    $('#frmpageForm-'+$langCode+'-parent_url').val($data.parentUrls[$langCode].parent_url);
+                    $('#frm-pageForm-'+$langCode+'-parent_url').val($data.parentUrls[$langCode].parent_url);
                 }
             }
         });
     });
 
     // ??
-    $("#frmaclForm-role").live("change", function() {
+    $("#frm-aclForm-role").live("change", function() {
         var $aclLink = _getGlobalValueFromDataAttribute('acllink');
         var $role = $(this).val();
 

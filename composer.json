@@ -1,20 +1,28 @@
 {
-    "name": "jurasm2/bubo-sandbox",
-    "description": "Sandbox for bubo application",
-    "require": {
-        "nette/nette": "2.0.*",
-        "jurasm2/bubo": "dev-develop",
-        "jurasm2/datagrid": "@dev",
-        "jurasm2/multiplefileupload": "dev-develop",
-        "dibi/dibi": "2.0.*",
-        "jurasm2/gettexttranslator": "2.0.*",
-        "srigi/nette-confirmationdialog": "dev-master",
-        "jpgraph/jpgraph": "dev-master"
-    },
-    "authors": [
-        {
-            "name": "Bubo",
-            "email": "project.bubo@gmail.com"
-        }
-    ]
+	"name": "jurasm2/bubo-sandbox",
+	"description": "Sandbox for bubo application",
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "git@github.com:jurasm2/MultipleFileUpload.git"
+		},
+		{
+			"type": "vcs",
+			"url": "git@github.com:jurasm2/nette-confirmationdialog.git"
+		}
+	],
+	"require": {
+		"nette/nette": "*",
+		"dibi/dibi": "*",
+		"kdyby/translation": "*",
+		"jurasm2/multiplefileupload": "dev-develop",
+		"srigi/nette-confirmationdialog": "dev-develop",
+		"jpgraph/jpgraph": "dev-master"
+	},
+	"authors": [
+		{
+			"name": "Bubo",
+			"email": "project.bubo@gmail.com"
+		}
+	]
 }

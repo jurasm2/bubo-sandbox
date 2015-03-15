@@ -1,0 +1,23 @@
+{layout $page->getLayout('@@master')}
+
+{block masterContent}
+
+<div class="page-wrapper sp">
+	{include 'includes/header.latte'}
+	{include 'includes/statictopmenu.latte'}
+
+	<div id="content">
+		<div class="container">
+			<div class="row">
+				{block subpageContent}
+				{/block}
+			</div>
+		</div>
+	</div>
+
+</div>
+
+{include 'includes/footer.latte'}
+{include 'includes/gallery_control.latte'}
+
+{/block}

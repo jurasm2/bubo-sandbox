@@ -1,0 +1,36 @@
+{layout $page->getDoctype('@html5')}
+
+{block body}
+
+    {block masterContent}
+    {/block}
+
+    {*<div class="slider subpage">*}
+        {*<div class="slider-inner-bottom subpage">*}
+            {*cache $page->getCacheID('brandMenu'), tags => ['labels/nase-znacky']*}
+
+            {*/cache*}
+        {*</div>*}
+    {*</div>*}
+{/block}
+
+
+{block css}
+	<link href='http://fonts.googleapis.com/css?family=EB+Garamond%7C;Open+Sans:400,600,300&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="{$themePath}/css/front.min.css">
+{/block}
+
+{block js-head}
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script src="{$themePath}/js/libs/html5shiv.js"></script>
+		<script src="{$themePath}/js/libs/respond.src.js"></script>
+	<![endif]-->
+{/block}
+
+{block js-body}
+<script src="{$themePath}/js/front.min.js"></script>
+
+<script src="{$basePath}/js/jquery.nette.js" type="text/javascript"></script>
+<script src="{$basePath}/js/netteForms.js" type="text/javascript"></script>
+{/block}

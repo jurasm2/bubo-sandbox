@@ -3,6 +3,7 @@
 namespace FrontModule\SandboxModule\Components\PageMenus;
 
 use Bubo;
+use Nette\Utils\Html;
 
 class HomepageGridMenu extends Bubo\Navigation\PageMenu
 {
@@ -10,29 +11,47 @@ class HomepageGridMenu extends Bubo\Navigation\PageMenu
 	public function __construct($parent, $name, $lang)
 	{
 		parent::__construct($parent, $name, $lang);
-		$this->setLabelName('Horní menu');
+		$this->setLabelName('Include in menu')->disableCaching();
 	}
 
-	public function setUpRenderer($renderer) {
-
-//        $newWrappers = array(
-//                        'innerLevel'      =>  'div',
-//                        'innerLevelItem'  =>  'span'
-//        );
-
-//        $renderer->setWrappers($newWrappers);
-
-		$renderer->getTopLevelPrototype()->class = 'main-menu fright';
-		$renderer->getInnerLevelPrototype()->class = 'submenu';
-
+	public function setUpRenderer($renderer)
+	{
+		$renderer->onRenderMenuItem = callback($this, 'renderMenuItem');
+		// reset wrappers
+		$newWrappers = [
+			'topLevel'      =>  null,
+			'topLevelItem'  =>  null,
+			'innerLevel'      =>  null,
+			'innerLevelItem'  =>  null
+		];
+		$renderer->setWrappers($newWrappers);
 		return $renderer;
 	}
 
 	// return configured traverser
-	public function getTraverser() {
-		$traverser = $this->createLabelTraverser();
+	public function getTraverser()
+	{
+		$traverser = $this->createLabelTraverser()->setEntity('page')->limit(0);
 		return $traverser;
 	}
 
 
+	public function renderMenuItem($page, $acceptedStates, $menuItemContainer, $level, $horizontalLevel, $highlight)
+	{
+		if ($highlight) {
+			$menuItemContainer->class .= 'active';
+		}
+
+		$template = $this->initTemplate(__DIR__ . '/templates/menuItem.latte');
+		$template->page = $page;
+
+		if ($horizontalLevel == 3) {
+			$menuItemContainer->class .= ' last';
+		}
+
+		$menuItemContainer->add(Html::el()
+			->setHtml($template->__toString())
+		);
+		return $menuItemContainer;
+	}
 }

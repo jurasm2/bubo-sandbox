@@ -1,44 +1,6 @@
 {layout $page->getLayout('@subpage')}
 
-{block #masterContent}
-
-<div class="page-wrapper hp">
-	<div id="header">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-12">
-					<div class="logo">
-						<h1><a href="{$basePath}">TOMAS WOLF</a></h1>
-						<span class="separator"></span>
-						<span class="subheader">PHOTOGRAPHER</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	<div id="content">
-		<div class="container">
-			<div class="row">
-				{control matrixGalleryMenu}
-			</div>
-		</div>
-	</div>
-
-
-</div>
-
-<div id="footer">
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-12">
-				<a href="#" target="_blank" title="Facebook"><i class="icon-facebook"></i></a>
-				<a href="#" target="_blank" title="E-mail"><i class="icon-mail"></i></a>
-			</div>
-		</div>
-	</div>
-</div>
-
-
+{block subpageContent}
+	{control matrixGalleryMenu}
 {/block}
+

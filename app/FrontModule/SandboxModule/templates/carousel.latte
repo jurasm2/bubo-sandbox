@@ -1,41 +1,6 @@
-{layout $page->getLayout('@master')}
+{layout $page->getLayout('@subpage')}
 
-{block masterContent}
-
-
-<div class="page-wrapper sp">
-
-	{include 'includes/header.latte'}
-
-
-	<div id="nav">
-		<div class="container">
-			<div class="row">
-				<div class="col-nav col-lg-10 col-lg-push-1">
-					<ul>
-						<li><a href="#">Portfolio</a></li>
-						<li><a href="#">Ukázky</a></li>
-						<li><a href="#">Portréty</a></li>
-						<li><a href="#">Informace</a></li>
-						<li><a href="#">O mě</a></li>
-						<li><a href="#">Kontakt</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div id="content">
-		<div class="container">
-			<div class="row">
-				this is slider
-			</div>
-		</div>
-	</div>
-
-
-</div>
-
-{include 'includes/footer.latte'}
-
+{block subpageContent}
+	{!$page->_content2('CarouselGallery')}
 {/block}
+

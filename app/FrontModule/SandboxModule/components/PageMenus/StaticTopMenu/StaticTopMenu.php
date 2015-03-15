@@ -21,7 +21,8 @@ class StaticTopMenu extends Bubo\Navigation\PageMenu
 	// return configured traverser
 	public function getTraverser()
 	{
-		$traverser = $this->createLabelTraverser()->skipFirst();
+		$traverser = $this->createLabelTraverser()
+			->highlight();
 		return $traverser;
 	}
 

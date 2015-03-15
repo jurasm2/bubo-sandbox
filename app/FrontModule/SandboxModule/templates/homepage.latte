@@ -1,15 +1,27 @@
-{layout $page->getLayout('@homepage')}
+{layout $page->getLayout('@@master')}
 
-{block #masterContent}
-    <div class="news-outer">
-        <div class="news-wrapper">
-            <div class="news-inner fleft">
-                <h1>{_Obsah}</h1>
-                <span class="stripes-border"></span>
-                {!$page->_content}
-            </div>
+{block masterContent}
 
-            <div class="clearfix"></div>
-        </div>
-    </div>
+<div class="page-wrapper hp">
+
+	{include 'includes/header.latte'}
+
+	<div id="content">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-md-10 col-md-push-1">
+					<div class="row">
+						{control homepageGridMenu}
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</div>
+
+{include 'includes/footer.latte'}
+
 {/block}

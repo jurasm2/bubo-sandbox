@@ -31,7 +31,7 @@ class MatrixGalleryMenu extends Bubo\Navigation\PageMenu
 	// return configured traverser
 	public function getTraverser()
 	{
-		$traverser = $this->createLabelTraverser()->setEntity('page');
+		$traverser = $this->createLabelTraverser()->setEntity('page')->skipFirst();
 		return $traverser;
 	}
 

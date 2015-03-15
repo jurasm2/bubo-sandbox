@@ -1,23 +1,5 @@
-{layout $page->getLayout('@master')}
+{layout $page->getLayout('@staticMenuSubpage')}
 
-{block #masterContent}
-
-{*cache $page->getCacheID('content'), tags => ['contents/'.$page->_tree_node_id, 'labels/nase-znacky', 'labels/novinky', 'labels/akce']*}
-
-        <div class="content">
-            <div class="content-header clearfix">
-                {control breadcrumbNavigation $page}
-                <div class="title fleft">
-                    <h1>{$page->_title}</h1>
-                </div>
-            </div>
-            <span class="stripes-border"></span>
-
-            <div class="content-text clearfix">
-			{_messages.general.hello}
-            {!$page->_content_f}
-            </div>
-        </div>
-
-{*/cache*}
+{block subpageContent}
+	this is content os subpage
 {/block}

@@ -1,13 +1,12 @@
-{layout $page->getLayout('@subpage')}
+{layout $page->getLayout('@staticMenuSubpage')}
 
 {block subpageContent}
-
-	<div id="content">
-		<div class="container">
-			<div class="row">
-				this is content
-			</div>
-		</div>
+	<div class="col-sm-8 col-lg-7 col-sm-push-4 col-lg-push-4">
+		<h1>{$page->_title}</h1>
+		{!$page->_content3_f}
 	</div>
 
+	<div class="col-sm-4 col-lg-3 col-sm-pull-8 col-lg-pull-6">
+		<img class="img-responsive center-block" src="{!$page->_content->getPath(0)}" alt="{!$page->_content->getDescription('title')}">
+	</div>
 {/block}

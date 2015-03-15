@@ -1,4 +1,8 @@
-<a class="news-box-title" href="{$page->_front_url}">{$page->_name}</a>
-
-<p>{$page->_content}</p>
-<a href="#" class="button more-link">Přečíst <span>&raquo;</span></a>
+<div class="col-ms-6 col-sm-4">
+	<div class="content-box hover-effect-1">
+		<h3>{$page->_title|upper}</h3>
+		<div class="img-container">
+			<a href="{$page->_front_url}"><img class="img-responsive" src="{!$page->_content->getAsImage(2)->getSrc()}" alt=""></a>
+		</div>
+	</div>
+</div>

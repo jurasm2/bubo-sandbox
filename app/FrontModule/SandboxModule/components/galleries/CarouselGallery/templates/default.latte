@@ -1,7 +1,7 @@
 {if $images}
 <div class="col-lg-10 col-lg-push-1">
 	<div class="img-gallery slideshow">
-		<img n:foreach="$images as $image" class="img-responsive" src="{$image->getPath(2)}" alt="">
+		<img n:foreach="$images as $image" class="img-responsive" src="{$image->getPath(0)}" alt="">
 	</div>
 </div>
 {/if}

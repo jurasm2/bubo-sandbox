@@ -3,10 +3,10 @@
 	<div class="col-xs-12">
 		<div class="img-gallery carousel">
 			{foreach $images as $image}
-				{var $imageSizes = getimagesize($image->getDirPath(1))}
+				{var $imageSizes = getimagesize($image->getDirPath(0))}
 				<figure>
-					<a href="{$image->getPath(1)}" data-size="{$imageSizes[0]}x{$imageSizes[1]}">
-						<img height="500" src="{$image->getPath(1)}" alt="{!$image->getDescription('title')}">
+					<a href="{$image->getPath(0)}" data-size="{$imageSizes[0]}x{$imageSizes[1]}">
+						<img height="500" src="{$image->getPath(0)}" alt="{!$image->getDescription('title')}">
 					</a>
 				</figure>
 			{/foreach}

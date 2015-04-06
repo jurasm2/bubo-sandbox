@@ -42,16 +42,6 @@ class RouterFactory
 		// ADMIN ROUTES
 		$router[] = $adminRouter = new RouteList('Admin');
 
-//		routes for plugins  -  obsolete
-//		$adminRouter[] = new Route("[<lang [a-z]{2}>/]admin/plugin-interpreter/<plugin>/<view>",
-//			array(
-//				'presenter'  =>  'Plugin',
-//				'action'     =>  'interpret',
-//				'plugin'     =>  $dashedCamel,
-//				'view'       =>  $dashedCamel
-//			)
-//		);
-
 		$adminRouter[] = new Route("admin/copy-layout", 'Default:copyLayout');
 		$adminRouter[] = new Route("admin/remove-pages", 'Default:removePages');
 		$adminRouter[] = new Route("admin/repair-urls", 'Default:repairUrls');
@@ -69,11 +59,7 @@ class RouterFactory
 
 		$adminRouter[] = new Route("[<lang [a-z]{2}>/]admin/<presenter>/<action>[/<id>]","Default:default");
 
-
-
 		$router[] = $frontRouter = new RouteList('Front');
-
-
 
 		$frontRouter[] = new Route("file/<url>",array(
 			'presenter'=>'Image',
@@ -91,9 +77,8 @@ class RouterFactory
 			'lang'=>NULL
 		));
 
-		// TEST
-		$selectedModuleNs = 'Front/Sandbox';
-		$selectedHost = 'localhost/bubo-sandbox/www/';
+		$selectedModuleNs = $this->container->parameters['appModuleNamespace'];
+		$selectedHost = $this->container->parameters['appHost'];
 
 		$selectedModule = $selectedModuleNs;
 		// make from ns module name
@@ -105,9 +90,7 @@ class RouterFactory
 		$m = explode('/', $selectedModuleNs);
 		array_shift($m);
 
-
 		if ($selectedModuleNs !== NULL) {
-
 			$frontRouter[] = new Route("//".$selectedHost."[<lang [a-z]{2}>/][<url>]", array(
 				//'module'    =>  $selectedModule,
 				'module'    =>  implode(':', $m),
@@ -118,20 +101,10 @@ class RouterFactory
 					Route::PATTERN => ".*"
 				)
 			));
-
 		}
 
-
-
-
-//
-//		$router = new RouteList();
-//		if ($this->container->parameters['consoleMode']) {
-//			$router[] = new CliRouter(array('action' => 'Cli:default'));
-//		} else {
-//			$router[] = new Route('<presenter>/<action>[/<id>]', 'Default:default');
-//		}
 		return $router;
 	}
 
 }
+

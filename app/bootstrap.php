@@ -81,16 +81,13 @@ foreach (Nette\Utils\Finder::findDirectories('*Module')->in(APP_DIR.'/FrontModul
 
 }
 
-//\Tracy\Debugger::dump($selectedHost);
-//die();
-//dump($selectedModuleNs);
-//die();
-
 if ($selectedProjectPath === NULL) {
     throw new \Nette\InvalidStateException('The project does not exist!');
 }
 
 $params = array(
+			'appModuleNamespace' => $selectedModuleNs,
+			'appHost' => $selectedHost,
             'projectName'    => $selectedFile->getBaseName(),
             'projectDir'    =>  $selectedProjectPath
 );

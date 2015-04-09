@@ -1,11 +1,11 @@
 
 modules:
     'Front/Sandbox':
-        title: 'Bubo sandbox'
+        title: 'Snipers Poděbrady'
         langs:
             cs: Čeština
-            en: English
+#            en: English
             #it: Italiano
         defaultLang: cs
         hosts:
-            - 'localhost/bubo-sandbox/www/'
+            - 'localhost/snipers/www/'

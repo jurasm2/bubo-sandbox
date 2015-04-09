@@ -1,15 +1,81 @@
-{layout $page->getLayout('@homepage')}
+{layout $page->getLayout('@layout')}
 
 {block #masterContent}
-    <div class="news-outer">
-        <div class="news-wrapper">
-            <div class="news-inner fleft">
-                <h1>{_Obsah}</h1>
-                <span class="stripes-border"></span>
-                {!$page->_content}
-            </div>
+	<div class="wrapper">
+		<div class="header">
+			<a href="{$basePath}" class="logo"></a>
+			{control bannerMenu}
+		</div>
 
-            <div class="clearfix"></div>
-        </div>
-    </div>
+		<div class="nav">
+			{control topMenu}
+		</div>
+
+		<div class="content clearfix">
+
+			<div class="sidebar">
+				<h3>Co nás čeká</h3>
+				<div class="sidebar-content">
+					{control commingNewsMenu}
+				</div>
+				<h3>Proběhlé akce</h3>
+				<div class="sidebar-content">
+					{control pastNewsMenu}
+				</div>
+			</div>
+
+			<div class="content-text homepage">
+
+				<div class="img-container size-745x342 slide-me">
+					{!$page->_content2('CarouselGallery')}
+				</div>
+
+			</div>
+		</div>
+
+		<br />
+
+		{include 'includes/scroller.latte'}
+
+		<div class="content full-width">
+			<div id="fb-root"></div>
+			<script>(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/cs_CZ/all.js#xfbml=1&appId=395202813876688";
+			fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));</script>
+			<div class="fb-like-box" data-href="https://www.facebook.com/sniperspodebrady" data-colorscheme="light" data-width="950" data-height="200" data-show-faces="true" data-header="true" data-stream="false" data-show-border="false"></div>
+		</div>
+
+
+	</div>
+
+    {*<div class="news-outer">*}
+        {*<div class="news-wrapper">*}
+            {*<div class="news-inner fleft">*}
+                {*<h1>{_Obsah}</h1>*}
+                {*<span class="stripes-border"></span>*}
+                {*{!$page->_content}*}
+            {*</div>*}
+
+			{*<p>Comming news menu</p>*}
+			{*{control commingNewsMenu}*}
+
+			{*<br /><br /><br /><br />*}
+
+			{*<p>Past news menu</p>*}
+			{*{control pastNewsMenu}*}
+
+			{*<p>Main menu</p>*}
+			{*{control topMenu}*}
+
+			{*<br /><br /><br /><br />*}
+			{*<p>Gallery</p>*}
+			{*{!$page->_content2('CarouselGallery')}*}
+
+            {*<div class="clearfix"></div>*}
+        {*</div>*}
+    {*</div>*}
 {/block}

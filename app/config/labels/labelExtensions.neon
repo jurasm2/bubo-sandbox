@@ -41,13 +41,13 @@ properties:
     mediaFile:
         type: mediaFile
         engine: media
-        mode: '240x800-shrink_only'
+        mode: '745x100-crop|240x800-shrink_only'
         label: 'Soubor'
 
     mediaGallery:
         type: mediaGallery
         engine: media
-        mode: '800x600-shrink_only|120x120-shrink_only'
+        mode: '745x342-crop|800x600-shrink_only|120x120-shrink_only'
         label: 'Galerie'
 
     courses:
@@ -58,14 +58,3 @@ properties:
             labelName: Kurzy
         label: 'Kurzy'
 
-
-#    flip:
-#        type: select
-#        label: 'Varianta flipu (select)'
-#        data:
-#            v1: 'Varianta 1'
-#            v2: 'Varianta 2'
-#            v3: 'Varianta 3'
-#            v4: 'Varianta 4'
-#        prompt: ':: Vyberte typ flipu ::'
-#        #required: 'Vyberte kraj'

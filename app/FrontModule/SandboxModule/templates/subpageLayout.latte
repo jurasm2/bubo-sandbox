@@ -1,23 +1,58 @@
-{layout $page->getLayout('@master')}
+{*cache $page->getCacheID('content'), tags => ['contents/'.$page->_tree_node_id, 'labels/nase-znacky', 'labels/novinky', 'labels/akce']*}
+{*/cache*}
+
+{layout $page->getLayout('@layout')}
 
 {block #masterContent}
+	<div class="wrapper">
+		<div class="header">
+			<a href="{$basePath}" class="logo"></a>
+			<div class="img-container size-745x100">
+				<img src="http://placehold.it/745x100" alt="" />
+			</div>
+		</div>
 
-{*cache $page->getCacheID('content'), tags => ['contents/'.$page->_tree_node_id, 'labels/nase-znacky', 'labels/novinky', 'labels/akce']*}
+		<div class="nav">
+			{control topMenu}
+		</div>
 
-        <div class="content">
-            <div class="content-header clearfix">
-                {control breadcrumbNavigation $page}
-                <div class="title fleft">
-                    <h1>{$page->_title}</h1>
-                </div>
-            </div>
-            <span class="stripes-border"></span>
+		<div class="content clearfix">
 
-            <div class="content-text clearfix">
-			{_messages.general.hello}
-            {!$page->_content_f}
-            </div>
-        </div>
+		</div>
 
-{*/cache*}
+		<div class="scroller">
+			<ul>
+				<li>Poděbradský florbalový oddíl pro kluky i holky, žáky i seniory :-)</li>
+				<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+			</ul>
+		</div>
+
+	</div>
+
+    {*<div class="news-outer">*}
+        {*<div class="news-wrapper">*}
+            {*<div class="news-inner fleft">*}
+                {*<h1>{_Obsah}</h1>*}
+                {*<span class="stripes-border"></span>*}
+                {*{!$page->_content}*}
+            {*</div>*}
+
+			{*<p>Comming news menu</p>*}
+			{*{control commingNewsMenu}*}
+
+			{*<br /><br /><br /><br />*}
+
+			{*<p>Past news menu</p>*}
+			{*{control pastNewsMenu}*}
+
+			{*<p>Main menu</p>*}
+			{*{control topMenu}*}
+
+			{*<br /><br /><br /><br />*}
+			{*<p>Gallery</p>*}
+			{*{!$page->_content2('CarouselGallery')}*}
+
+            {*<div class="clearfix"></div>*}
+        {*</div>*}
+    {*</div>*}
 {/block}

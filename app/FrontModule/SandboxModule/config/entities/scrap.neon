@@ -10,22 +10,28 @@
 #
 #
 entityMeta:
-    title: 'Útržek'
-    createUrl: no
+	title: 'Útržek'
+	createUrl: no
 
 properties:
-    content:
-#        db: # if ommited then cms_page.<propertyName> used
-#            table: '[:core:samsung]'	# if ommited table [cms_page] used, use dibi style notations
-#            attribute: '[content]'
-        type: textArea
-        label: 'Content'
-        class: wysiwyg
+	content:
+		extName: mediaFile # reference to label extension file
+		label: 'Image'
+
+	content2:
+		type: external_url
+		label: 'Externí url'
+
+	content3:
+		type: textArea
+		label: 'Obsah'
+		class: wysiwyg
+
 
 groups:
-    full:
-        #perex: yes
-        content: no
-        #content2: yes
-        #content3: yes
+	full:
+		#perex: yes
+		content: no
+		#content2: yes
+		#content3: yes
 			

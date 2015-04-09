@@ -50,17 +50,7 @@ class LabelForm extends BaseForm {
         $this->addCheckBox('show_button', 'Zobrazit tlačítko');
 
         // load templates -> get only existing and with nice names (if possible)
-        $_templates = $this->presenter->projectManagerService->getListOfTemplates(TRUE);
-//        dump($_templates);
-//        die();
-//        $templateConfig = $this->presenter->configLoaderService->loadLayoutConfig();
-//        $res = \Nette\Utils\Arrays::mergeTree($templateConfig['layouts'], $_templates['head']);
-//        $templates['Normální stránky'] = array_intersect_key($res, $_templates['head']);
-//        if (isset($_templates['headless'])) {
-//            $res = \Nette\Utils\Arrays::mergeTree($templateConfig['layouts'], $_templates['headless']);
-//            $templates['Stránky bez url'] = array_intersect_key($res, $_templates['headless']);
-//        }
-
+        $_templates = $this->presenter->projectManagerService->getListOfTemplates(true) + $this->presenter->projectManagerService->getListOfTemplates(false);
 
         $templateConfig = $this->presenter->configLoaderService->loadLayoutConfig();
         $res = \Nette\Utils\Arrays::mergeTree($templateConfig['layouts'], $_templates);

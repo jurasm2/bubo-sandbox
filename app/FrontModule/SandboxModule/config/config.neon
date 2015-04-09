@@ -4,7 +4,7 @@ parameters:
 		host: localhost
 		username: root
 		password:
-		database: bubo-cms
+		database: snipers
 		charset: utf8
 		profiler: true
 

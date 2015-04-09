@@ -2,26 +2,30 @@
 
 namespace FrontModule\SandboxModule\Components\PageMenus;
 
-use Nette\Utils\Html,
-    Bubo;
+use Nette\Utils\Html;
+use Bubo;
+use Bubo\Navigation\PageMenu;
 
-class BannerMenu extends Bubo\Navigation\PageMenu {
-    
-    public function __construct($parent, $name, $lang) {
+class BannerMenu extends PageMenu
+{
+
+    public function __construct($parent, $name, $lang)
+    {
         parent::__construct($parent, $name, $lang);
-        $this->setLabelName('Novinky');
+        $this->setLabelName('Banner')->disableCaching();
     }
     
-    public function setUpRenderer($renderer) {
+    public function setUpRenderer($renderer)
+    {
         $renderer->onRenderMenuItem = callback($this, 'renderMenuItem');
         
-        $newWrappers = array(
-                        'topLevel'      =>  'div',
-                        'topLevelItem'  =>  'div',
-                        'innerLevel'      =>  'div',
-                        'innerLevelItem'      =>  'div'
-        );
-        
+        $newWrappers = [
+	        'topLevel' =>  null,
+	        'topLevelItem' => null,
+	        'innerLevel' => null,
+	        'innerLevelItem' => null,
+        ];
+
         $renderer->setWrappers($newWrappers);
         
         $renderer->getTopLevelPrototype()->class = 'news-box-row';
@@ -34,35 +38,18 @@ class BannerMenu extends Bubo\Navigation\PageMenu {
     public function getTraverser() {
         $traverser = $this->createLabelTraverser();
         return $traverser
-                    ->setSortingCallback(callback($this, 'customSort'))
-                    ->limit(3)
-                    ->skipFirst();
+	                ->setEntity('scrap')
+                    ->limit(1);
     }
-    
-    public function customSort($page1, $page2) {
-        
-        $date1 = \DateTime::createFromFormat('d.m.Y', $page1->_ext_news_date);
-        $timestamp1 = $date1 ? $date1->getTimestamp() : 0;
-        
-        
-        $date2 = \DateTime::createFromFormat('d.m.Y', $page2->_ext_news_date);
-        $timestamp2 = $date2 ? $date2->getTimestamp() : 0;
-        
-        $sorting =  $timestamp2 - $timestamp1;
-        
-        return $sorting;
-        
-        
-    }
-    
-     
-    public function renderMenuItem($page, $acceptedStates, $menuItemContainer, $level, $horizontalLevel, $highlight) {
+
+    public function renderMenuItem($page, $acceptedStates, $menuItemContainer, $level, $horizontalLevel, $highlight)
+    {
 
         if ($highlight) {
             $menuItemContainer->class .= 'active';
         }
 
-        $template = $this->createNewTemplate(__DIR__ . '/templates/menuItem.latte');
+	    $template = $this->initTemplate(__DIR__ . '/templates/menuItem.latte');
         
         $template->page = $page;
         
@@ -75,7 +62,6 @@ class BannerMenu extends Bubo\Navigation\PageMenu {
                             );
         
         return $menuItemContainer;
-    
     }
     
 }

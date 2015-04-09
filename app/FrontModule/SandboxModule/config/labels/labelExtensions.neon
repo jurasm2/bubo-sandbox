@@ -30,27 +30,3 @@ properties:
         type: textArea
         label: 'Soubor'
         class: file
-
-
-    select:
-        type: select
-        label: 'Kraje (select)'
-        data:
-            praha: 'Praha'
-            karlovarsky: 'Karlovarský kraj'
-            kralovehradecky: 'Královehradecký kraj'
-            olomoucky: 'Olomoucký kraj'
-            jihomoravsky: 'Jihomoravský kraj'
-            slovensko: 'Slovensko'
-        prompt: ':: Vyberte kraj ::'
-       #required: 'Vyberte kraj'
-
-    selectFlip:
-        type: select
-        label: 'Varianta flipu'
-        data:
-            v1: 'Varianta 1'
-            v2: 'Varianta 2'
-            v3: 'Varianta 3'
-            v4: 'Varianta 4'
-        prompt: ':: Vyberte typ flipu ::'

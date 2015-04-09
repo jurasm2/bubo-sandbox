@@ -1,0 +1,26 @@
+{layout $page->getDoctype('@html5')}
+
+{block body}
+	{block masterContent}
+	{/block}
+{/block}
+
+
+{block css}
+<link rel="stylesheet" type="text/css" href="{$themePath}/css/base.css" media="all" />
+<link rel="stylesheet" type="text/css" href="{$themePath}/css/front.css" media="all" />
+{/block}
+
+{block js-head}
+{/block}
+
+{block js-body}
+<script type="text/javascript" src="{$themePath}/js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="{$themePath}/js/plugins/jquery.cycle.all.js"></script>
+<script type="text/javascript" src="{$themePath}/js/plugins/jquery.li-scroller.js"></script>
+<script type="text/javascript" src="{$themePath}/js/plugins/shadowbox.js"></script>
+<script type="text/javascript" src="{$themePath}/js/scripts.js"></script>
+
+<script src="{$basePath}/js/jquery.nette.js" type="text/javascript"></script>
+<script src="{$basePath}/js/netteForms.js" type="text/javascript"></script>
+{/block}

@@ -1,0 +1,21 @@
+{layout $page->getLayout('@layout')}
+
+{block #masterContent}
+
+	<div class="wrapper img-right">
+		{include 'includes/header.latte'}
+
+		<div class="content full-width">
+			<h1>{$page->_title}</h1>
+			{!$page->_content3}
+		</div>
+
+		{!$page->_content2('RightSideGallery')}
+
+		{include 'includes/scroller.latte'}
+
+	</div>
+
+	{include 'includes/footer.latte'}
+
+{/block}

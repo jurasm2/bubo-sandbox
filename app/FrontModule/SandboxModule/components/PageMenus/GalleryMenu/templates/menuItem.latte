@@ -1,0 +1,10 @@
+{dump $level}
+{if $level % 6 == 1}<div{if $level > 1} style="display:none"{/if}>{/if}
+<div n:class="gallery-box, $level % 3 == 0 ? last">
+    <a href="{$page->_front_url}" title="{$page->_name}"><img src="{$page->_content->getPath(4)}" alt="{$page->_name}" /></a>
+    <span>{$page->_page_title}</span>
+</div>
+{if $level % 6 == 0 || ($level == $numOfItems)}</div>{/if}
+
+    
+

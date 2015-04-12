@@ -6,83 +6,16 @@
 		{include 'includes/header.latte'}
 
 		<div class="content full-width">
-			<h1>Fotogalerie</h1>
+			<h1>{!$page->_title}</h1>
+
 			<div class="gallery-container clearfix">
-				<div>
-					<div class="gallery-box">
-						<a rel="shadowbox[gal]" href="http://i.imgur.com/weK3j.jpg"><img src="http://placehold.it/302x201/" alt="" /></a>
-						<span>Lorem Ipsum</span>
-					</div>
-					<div class="gallery-box">
-						<a rel="shadowbox[gal]" href="http://i.imgur.com/weK3j.jpg"><img src="http://placehold.it/302x201/" alt="" /></a>
-						<span>Lorem Ipsum</span>
-					</div>
-					<div class="gallery-box last">
-						<a rel="shadowbox[gal]" href="http://i.imgur.com/weK3j.jpg"><img src="http://placehold.it/302x201/" alt="" /></a>
-						<span>Lorem Ipsum</span>
-					</div>
-					<div class="gallery-box">
-						<a rel="shadowbox[gal]" href="http://i.imgur.com/weK3j.jpg"><img src="http://placehold.it/302x201/" alt="" /></a>
-						<span>Lorem Ipsum</span>
-					</div>
-					<div class="gallery-box">
-						<a rel="shadowbox[gal]" href="http://i.imgur.com/weK3j.jpg"><img src="http://placehold.it/302x201/" alt="" /></a>
-						<span>Lorem Ipsum</span>
-					</div>
-					<div class="gallery-box last">
-						<a rel="shadowbox[gal]" href="http://i.imgur.com/weK3j.jpg"><img src="http://placehold.it/302x201/" alt="" /></a>
-						<span>Lorem Ipsum</span>
-					</div>
-				</div>
-
-				<div style="display:none;">
-					<div class="gallery-box">
-						<a rel="shadowbox[gal]" href="http://i.imgur.com/weK3j.jpg"><img src="http://placehold.it/302x201/" alt="" /></a>
-						<span>Lorem Ipsum</span>
-					</div>
-					<div class="gallery-box">
-						<a rel="shadowbox[gal]" href="http://i.imgur.com/weK3j.jpg"><img src="http://placehold.it/302x201/" alt="" /></a>
-						<span>Lorem Ipsum</span>
-					</div>
-					<div class="gallery-box last">
-						<a rel="shadowbox[gal]" href="http://i.imgur.com/weK3j.jpg"><img src="http://placehold.it/302x201/" alt="" /></a>
-						<span>Lorem Ipsum</span>
-					</div>
-					<div class="gallery-box">
-						<a rel="shadowbox[gal]" href="http://i.imgur.com/weK3j.jpg"><img src="http://placehold.it/302x201/" alt="" /></a>
-						<span>Lorem Ipsum</span>
-					</div>
-					<div class="gallery-box">
-						<a rel="shadowbox[gal]" href="http://i.imgur.com/weK3j.jpg"><img src="http://placehold.it/302x201/" alt="" /></a>
-						<span>Lorem Ipsum</span>
-					</div>
-					<div class="gallery-box last">
-						<a rel="shadowbox[gal]" href="http://i.imgur.com/weK3j.jpg"><img src="http://placehold.it/302x201/" alt="" /></a>
-						<span>Lorem Ipsum</span>
-					</div>
-				</div>
-
-				<div style="display:none;">
-					<div class="gallery-box">
-						<a rel="shadowbox[gal]" href="http://i.imgur.com/weK3j.jpg"><img src="http://placehold.it/302x201/" alt="" /></a>
-						<span>Lorem Ipsum</span>
-					</div>
-					<div class="gallery-box">
-						<a rel="shadowbox[gal]" href="http://i.imgur.com/weK3j.jpg"><img src="http://placehold.it/302x201/" alt="" /></a>
-						<span>Lorem Ipsum</span>
-					</div>
-					<div class="gallery-box last">
-						<a rel="shadowbox[gal]" href="http://i.imgur.com/weK3j.jpg"><img src="http://placehold.it/302x201/" alt="" /></a>
-						<span>Lorem Ipsum</span>
-					</div>
-
-				</div>
-				<div class="paginator"><a href="#" class="current">1–6, </a><a href="#">7–12, </a><a href="#">13–18 </a></div>
+				{control galleryMenu}
+				{control galleryPaginatorMenu}
+				{*<div class="paginator"><a href="#" class="current">1–6, </a><a href="#">7–12, </a><a href="#">13–18 </a></div>*}
 			</div>
 		</div>
 
 		{include 'includes/scroller.latte'}
-
 	</div>
 
 	{include 'includes/footer.latte'}

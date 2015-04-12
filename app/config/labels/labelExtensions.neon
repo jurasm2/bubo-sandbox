@@ -41,13 +41,13 @@ properties:
     mediaFile:
         type: mediaFile
         engine: media
-        mode: '745x100-crop|240x800-shrink_only|150x60-crop'
+        mode: '745x100-crop|240x800-shrink_only|150x60-crop|302x201-crop'
         label: 'Soubor'
 
     mediaGallery:
         type: mediaGallery
         engine: media
-        mode: '745x342-crop|256x170-crop|800x600-shrink_only|120x120-shrink_only'
+        mode: '745x342-crop|256x170-crop|302x201-crop|800x600-shrink_only|120x120-shrink_only'
         label: 'Galerie'
 
     courses:

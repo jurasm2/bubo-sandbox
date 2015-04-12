@@ -1,0 +1,16 @@
+{if $images}
+	{var $numOfItems = count($images)}
+	{foreach $images as $image}
+
+		{var $level = $iterator->counter}
+		{if $level % 6 == 1}<div{if $level > 1} style="display:none"{/if}>{/if}
+		<div n:class="gallery-box, $level % 3 == 0 ? last">
+		    <a href="{$image->getPath(0)}" rel="shadowbox[gal]" title="{$image->getDescription('title')}"><img src="{$image->getPath(3)}" alt="{$image->getDescription('title')}" /></a>
+		    <span>{$image->getDescription('title')}</span>
+		</div>
+		{if $level % 6 == 0 || ($level == $numOfItems)}</div>{/if}
+
+	{/foreach}
+
+	<div class="paginator">{foreach range(1, $numOfItems) as $i}{if $i % 6 == 1}<a href="#">{$i}{/if}{if $i % 6 == 0 || $i == $numOfItems}&ndash;{$i}{sep},{/sep} </a>{/if}{/foreach}</div>
+{/if}

@@ -1,0 +1,9 @@
+{dump 'numofitems'.$numOfItems}
+<div class="paginator">
+{foreach range(1, $numOfItems) as $i}
+	{if $i % 6 == 1}<a href="#">{$i}{/if}{if ($i % 6 == 0 || $i == $numOfItems)}&ndash;{$i}{sep},{/sep} </a>{/if}
+{/foreach}
+</div>
+
+    
+

@@ -9,13 +9,24 @@
 		{
 			"type": "vcs",
 			"url": "git@github.com:jurasm2/nette-confirmationdialog.git"
+		},
+		{
+			"type": "vcs",
+			"url": "git@github.com:jurasm2/bubo.git"
+		},
+		{
+			"type": "vcs",
+			"url": "git@github.com:jurasm2/datagrid.git"
 		}
+
 	],
 	"require": {
 		"nette/nette": "*",
 		"dibi/dibi": "*",
 		"kdyby/translation": "*",
 		"jurasm2/multiplefileupload": "dev-develop",
+		"jurasm2/bubo": "dev-develop",
+		"jurasm2/datagrid": "dev-master",
 		"srigi/nette-confirmationdialog": "dev-develop",
 		"jpgraph/jpgraph": "dev-master"
 	},

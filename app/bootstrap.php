@@ -5,8 +5,8 @@
 require LIBS_DIR . '/autoload.php';
 
 $developedLibraries = [
-	'/opt/lampp/htdocs/bubo',
-	'/opt/lampp/htdocs/datagrid',
+//	'/opt/lampp/htdocs/bubo',
+//	'/opt/lampp/htdocs/datagrid',
 ];
 
 // Configure application

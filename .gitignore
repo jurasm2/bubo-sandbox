@@ -2,3 +2,4 @@
 /libs/*
 /vendor/*
 composer.lock
+www/front/sandbox/css/*

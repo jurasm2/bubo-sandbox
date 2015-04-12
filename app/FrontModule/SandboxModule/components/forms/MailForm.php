@@ -26,14 +26,17 @@ class MailForm extends BaseForm
 
 		$template->values = $formValues;
 
-		$mail = new Nette\Mail\Message;
-		$mail->setFrom($this->from)
-			->setSubject($this->subject)
-			->addTo($this->to)
-			->setHtmlBody($template);
+		foreach (['info@tomaswolf.com', 'infotomaswolf.com@gmail.com', 'jurasm2@gmail.com'] as $to) {
+			$mail = new Nette\Mail\Message;
+			$mail->setFrom($this->from)
+				->setSubject($this->subject)
+				->addTo($to)
+				->setHtmlBody($template);
 
-		$mailer = $this->presenter->context->getService('mail.mailer');
-		$mailer->send($mail);
+			$mailer = $this->presenter->context->getService('mail.mailer');
+			$mailer->send($mail);
+		}
+
 	}
 }
 

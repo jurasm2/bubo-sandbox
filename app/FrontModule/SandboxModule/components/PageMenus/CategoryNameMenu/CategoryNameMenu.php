@@ -5,7 +5,7 @@ namespace FrontModule\SandboxModule\Components\PageMenus;
 use Bubo;
 use Nette\Utils\Html;
 
-class HomepageGridMenu extends Bubo\Navigation\PageMenu
+class CategoryNameMenu extends Bubo\Navigation\PageMenu
 {
 
 	public function __construct($parent, $name, $lang)
@@ -31,37 +31,20 @@ class HomepageGridMenu extends Bubo\Navigation\PageMenu
 	// return configured traverser
 	public function getTraverser()
 	{
-		$traverser = $this->createLabelTraverser()->setEntity('page')->limit(0);
+		$traverser = $this->createLabelTraverser()
+			->setGoThroughActive();
 		return $traverser;
 	}
 
-
 	public function renderMenuItem($page, $acceptedStates, $menuItemContainer, $level, $horizontalLevel, $highlight)
 	{
-		if ($highlight) {
-			$menuItemContainer->class .= 'active';
-		}
-
-		$pageManager = $this->presenter->context->getService('pageManager');
-
-		$label = $pageManager->getLabelByName('Fotokurzy');
-		$redirectToFotokurzy = false;
-		if ($label && $page->isLabelledBy($label['label_id'])) {
-			$redirectToFotokurzy = 'http://nauctesefotografovat.cz';
-		}
-
 		$template = $this->initTemplate(__DIR__ . '/templates/menuItem.latte');
-
-		$template->redirectToFotokurzy = $redirectToFotokurzy;
 		$template->page = $page;
-
-		if ($horizontalLevel == 3) {
-			$menuItemContainer->class .= ' last';
-		}
 
 		$menuItemContainer->add(Html::el()
 			->setHtml($template->__toString())
 		);
 		return $menuItemContainer;
 	}
+
 }

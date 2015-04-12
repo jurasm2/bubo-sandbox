@@ -3,11 +3,17 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="logo">
-					<h1><a href="{$basePath}">TOMAS WOLF</a></h1>
+					<a href="{$basePath}/">TOMAS WOLF</a>
 					<span class="separator"></span>
 					<span class="subheader">PHOTOGRAPHER</span>
 				</div>
+				{*<div class="lang-switch">*}
+					{*<a href="/en/">EN</a> | <a class="active" href="/cs/">CS</a>*}
+				{*</div>*}
 			</div>
+			{if !$page->isLabelledBy(1)}
+				{control categoryNameMenu $page}
+			{/if}
 		</div>
 	</div>
 </div>

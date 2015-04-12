@@ -15,6 +15,15 @@ class StaticTopMenu extends Bubo\Navigation\PageMenu
 
 	public function setUpRenderer($renderer)
 	{
+		$renderer->onRenderMenuItem = callback($this, 'renderMenuItem');
+		// reset wrappers
+		$newWrappers = [
+			'topLevel'      =>  null,
+			'topLevelItem'  =>  null,
+			'innerLevel'      =>  null,
+			'innerLevelItem'  =>  null
+		];
+		$renderer->setWrappers($newWrappers);
 		return $renderer;
 	}
 

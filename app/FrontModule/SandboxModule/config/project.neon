@@ -9,3 +9,4 @@ modules:
         defaultLang: cs
         hosts:
             - 'localhost/bubo-sandbox/www/'
+            - 'tomaswolf.com/'

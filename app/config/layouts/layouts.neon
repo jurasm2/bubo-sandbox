@@ -3,6 +3,7 @@ layouts:
     carousel.latte: "Carousel"
     matrix_menu.latte: "Grid"
     swiper.latte: "Swiper <---->"
+    swiper_fluid.latte: "Swiper <----> (fluid)"
     one_column.latte: "1 column"
     two_columns.latte: "2 columns"
     contact.latte: "Contact form"

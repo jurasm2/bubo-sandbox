@@ -15,7 +15,7 @@ class TopMenu extends Bubo\Navigation\PageMenu
 
 	// return configured traverser
 	public function getTraverser() {
-		$traverser = $this->createLabelTraverser();
+		$traverser = $this->createLabelTraverser()->highlight(true);
 		return $traverser;
 	}
 

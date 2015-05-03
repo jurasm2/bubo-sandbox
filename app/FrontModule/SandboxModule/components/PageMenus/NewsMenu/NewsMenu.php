@@ -83,12 +83,13 @@ class NewsMenu extends Bubo\Navigation\PageMenu {
     public function renderMenuItem($page, $acceptedStates, $menuItemContainer, $level, $horizontalLevel, $highlight) {
 
         if ($highlight) {
-            $menuItemContainer->class .= 'active';
+            $menuItemContainer->class .= ' active';
         }
 
 	    $template = $this->initTemplate(__DIR__ . '/templates/menuItem.latte');
         
         $template->page = $page;
+	    $template->isLast = $horizontalLevel == 3;
         
         if ($horizontalLevel == 3) {
             $menuItemContainer->class .= ' last';

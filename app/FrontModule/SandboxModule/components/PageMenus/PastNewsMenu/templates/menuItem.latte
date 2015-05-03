@@ -1,2 +1,4 @@
 <p class="date">{!$page->_ext_news_date}</p>
-{!$page->_content}
+<div n:tag-if="$isLast" class="last">
+{!$page->_content3}
+</div>

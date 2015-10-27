@@ -653,4 +653,8 @@ a.more {
     border: 1px solid red;
 }
 
+input.form-control {
+    padding: 0 20px;
+}
+
 
